@@ -1,5 +1,5 @@
 # Presentation
-[fuzzy.pdf](https://github.com/peterbabic/fuzzy-logic-presentation/blob/master/fuzzy.pdf)
+[fuzzy.pdf](https://github.com/peterbabic/LaTeX/blob/master/fuzzy-logic/fuzzy_logic.pdf)
 
 # Assignment
 The aim is: You choose an application of fuzzy logic and you have to answer

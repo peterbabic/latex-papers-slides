@@ -100,12 +100,12 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Sorites Paradox \cite{podosky1985vagueness}}
+\begin{frame}{Sorites Paradox}
 	When does a heap of grains stops being heap, if we are removing one grain at a time?
 	
 	\begin{figure}
 	\includegraphics[width=.75\textwidth]{sorites-gradient.jpg}
-	\caption{At what point exactly does blue becomes red?}
+	\caption{At what point exactly does blue becomes red? Sorites paradox \cite{podosky1985vagueness}.}
 	\end{figure}
 	
 	$$Bald(0)$$
@@ -270,8 +270,15 @@
 	\end{figure}
 \end{frame}
 
+\begin{frame}{Fuzzy Inference Engine}
+	\begin{figure}
+	\includegraphics[width=.65\textwidth]{inference.png}
+	\caption{Process of a fuzzy control. The most used method for defuzzification is \textit{center of gravity} (centroid).}
+	\end{figure}
+\end{frame}
 
-\begin{frame}{Fuzzy Control Applications \cite{ross2009fuzzy}}
+
+\begin{frame}{Fuzzy Control Applications}
 	\begin{itemize}
 	\item Camera autofocus by Canon
 	\item Increased effectivity of Mutsushita vacuum robots
@@ -281,11 +288,71 @@
 	\end{itemize}
 	
 	\vskip .5cm
-	The fuzzy control systems are commonly used where there are not enough resources for highly advanced systems like \textbf{PID\footnote{Proportional-integral-derivative} controller}, \textbf{Artificial neural network} or \textbf{Genetic algorithm} \cite{rajasekaran2003neural}.
+	The fuzzy control systems are commonly used \cite{ross2009fuzzy} where there are not enough resources for highly advanced systems like \textbf{PID\footnote{Proportional-integral-derivative} controller}, \textbf{Artificial neural network} or \textbf{Genetic algorithm} \cite{rajasekaran2003neural}.
+\end{frame}
+
+
+\subsection{Software}
+
+\begin{frame}{MATLAB Fuzzy Toolbox Introduction}
+	\begin{itemize}
+		\item Provides a complete set of functions to design an implement various fuzzy logic processes \cite{sivanandam2006introduction}
+		\item Major fuzzy logic operation-fuzzification, defuzzification, and the fuzzy inference
+		\item Can be implemented using the Graphical User Interface (GUI)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{MATLAB Fuzzy Toolbox}
+	 Features:
+	\begin{itemize}
+		\item It provides tools to create and edit fuzzy inference system (FIS).
+		\item Allows integrating fuzzy systems into simulation with Simulink.
+		\item It is possible to create stand-alone C programs that call on fuzzy systems
+	\end{itemize}
+	MATLAB Fuzzy Toolbox Tool Categories:
+	\begin{itemize}
+		\item Command line functions
+		\item Graphical or interactive tools
+		\item Simulink blocks
+	\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}[allowframebreaks]{MATLAB Fuzzy Toolbox}
+	\begin{figure}
+	\includegraphics[width=.75\textwidth]{sw-1.png}
+%	\caption{•}
+	\end{figure}
+	\begin{figure}
+	\includegraphics[width=.75\textwidth]{sw-2.png}
+%	\caption{•}
+	\end{figure}
+	\begin{figure}
+	\includegraphics[width=.75\textwidth]{sw-3.png}
+%	\caption{•}
+	\end{figure}
+	\begin{figure}
+	\includegraphics[width=.75\textwidth]{sw-4.png}
+%	\caption{•}
+	\end{figure}
+	\begin{figure}
+	\includegraphics[width=.5\textwidth]{sw-5.png}
+%	\caption{•}
+	\end{figure}
+	\begin{figure}
+	\includegraphics[width=.75\textwidth]{sw-6.png}
+%	\caption{•}
+	\end{figure}
 \end{frame}
 
 
 \section{Final Remarks}
+
+\begin{frame}{Is Fuzzy Logic a Viable Option?}
+	The widespread use, amount of knowledge accumulated and countless tools and literature available proof it as \textbf{yes}.
+\end{frame}
 
 
 \subsection{References}
@@ -304,7 +371,7 @@
 
 \end{document}
 
-
+%sivanandam2006introduction
 
 
 %\begin{frame}{Blocks}
