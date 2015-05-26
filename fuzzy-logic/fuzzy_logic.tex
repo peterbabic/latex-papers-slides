@@ -60,7 +60,7 @@
 	\begin{columns}
 	\column{.6\textwidth}
 		\begin{itemize}
-		\item Fuzzy logic is an extension of Boolean logic
+		\item Fuzzy logic is an extension of multivalued logic
 		\item Natural language rules
 		\item Aristotle, later Lofti A. Zadeh in 1965 and 1973
 		\item Japan, later on west
@@ -137,11 +137,12 @@
 
 \begin{frame}{Formal Definitions}
 	\begin{block}{Definition}
-		Let $U$ be the \textit{universe of discourse} and $x$ be the element in it. The \textit{membership function} $\mu_A$ is defined as:
-		$$\mu_A:X\rightarrow[0,1]$$
+		Let $U$ be the \textit{universe of discourse} and $x$ be the element in it. The \textit{membership function} $f^A$ assigning \textit{degree of membership} $\mu_A$:
+		$$f^A(x): \: \in U \rightarrow \mu_A(x) \in [0,1]$$
+%		$$\mu_A:U\rightarrow[0,1]$$
 	\end{block}
 	\begin{block}{Definition}
-		A fuzzy set $A$ is expressed as a set of ordered pairs, given that $\mu_A(x)$ is a degree, to which $x$ a member of $A$:
+		A fuzzy set $A$ is expressed as a set of ordered pairs (tuples), given that $\mu_A(x)$ is a degree, to which $x$ a member of $A$:
 	$$A=\{(x,\mu_A(x))\,|\,x \in U\}$$
 	\end{block}
 \end{frame}
@@ -272,7 +273,7 @@
 
 \begin{frame}{Fuzzy Inference Engine}
 	\begin{figure}
-	\includegraphics[width=.65\textwidth]{inference.png}
+	\includegraphics[width=.6\textwidth]{inference.png}
 	\caption{Process of a fuzzy control. The most used method for defuzzification is \textit{center of gravity} (centroid).}
 	\end{figure}
 \end{frame}

@@ -4,7 +4,7 @@ Type='mamdani'
 Version=2.0
 NumInputs=2
 NumOutputs=1
-NumRules=6
+NumRules=7
 AndMethod='min'
 OrMethod='max'
 ImpMethod='min'
@@ -45,3 +45,4 @@ MF5='greatlyIncreased':'trimf',[5 20 30]
 3 -4, 1 (0.5) : 1
 -3 1, 4 (0.25) : 1
 0 2, 3 (0.1) : 1
+2 1, 1 (1) : 1
