@@ -84,13 +84,21 @@ differential, dynamics, electrical, equation, modeling, ordinary, system
 \hfill June 03, 2015
 
 \section{Dynamical System}
-adfsdf
+\textbf{Dynamical systems} are mathematical objects used to model physical phenomena whose state (or instantaneous description) changes over time. These models are used in financial and economic forecasting, environmental modeling, medical diagnosis, industrial equipment diagnosis, and a host of other applications.
+
+For the most part, applications fall into three broad categories: predictive (also referred to as generative), in which the objective is to predict future states of the system from observations of the past and present states of the system, diagnostic, in which the objective is to infer what possible past states of the system might have led to the present state of the system (or observations leading up to the present state), and, finally, applications in which the objective is neither to predict the future nor explain the past but rather to provide a theory for the physical phenomena. These three categories correspond roughly to the need to predict, explain, and understand physical phenomena.
 
 \section{Differential Equations}
-sadf
+A \textbf{differential equation} is any equation which contains derivatives, either ordinary derivatives or partial derivatives.
 
-\subsection{Slope field}
-In \textit{mathematics}, a \textbf{slope field} (or \textbf{direction field}) is a graphical representation of the solutions of a first-order differential equation. It is useful because it can be created without solving the differential equation analytically. The representation may be used to qualitatively visualize solutions, or to numerically approximate them \cite{strogatz1994nonlinear}.
+\subsection{Direction Field}
+Understanding \textbf{direction fields} (or \textbf{slope fields)} and what they tell us about a differential equation and its solution is important and can be introduced without any knowledge of how to solve a differential equation and so can be done here before we get into solving them.  So, having some information about the solution to a differential equation without actually having the solution is a nice idea that needs some investigation.
+ 
+Next, since we need a differential equation to work with this is a good section to show you that differential equations occur naturally in many cases and how we get them.  Almost every physical situation that occurs in nature can be \textit{described} with an appropriate differential equation.  
+ 
+The process of describing a physical situation with a differential equation is called \textbf{modeling}. We will be looking at modeling several times throughout this class.
+
+The direction fields are important because they can provide a \textit{sketch of solution}, if exist, and a \textit{long term behavior} - most of the time we are interested in general picture about what is happening, as the time passes.
 
 \section{Limit Cycle}
 A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means that neighboring trajectories are not closed - they spiral either towards or away from the limit cycle. The particle on the limit cycle, appears after one period on the exact same spot.
@@ -113,7 +121,7 @@ If all neighboring trajectories approach the limit cycle, we say the limit cycle
 
 Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic ring of a pace maker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillation of some preferred period, waveform, and amplitude. Oscillations are important part of electronics \cite{oscillations}, too.
 
-If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear}.
+If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear} \cite{strogatz1994nonlinear}.
 
 \begin{figure}[ht!]
 	\centering
@@ -173,7 +181,7 @@ which can be plotted onto direction field, as shown on \cref{f:vdp_m}. It is pos
 
 The Van der Pol oscillator can be forced too, however, this work does not aim to investigate further in this direction.
 
-\begin{figure}[t!]
+\begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.85\linewidth]{vdp_maxima}
 	\caption{Phase portrait of the unforced Van der Pol oscillator, showing a limit cycle and the direction field Parameter $\mu=1$. The wxMaxima computing software was used for this purpose. }
