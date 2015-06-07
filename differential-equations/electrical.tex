@@ -90,10 +90,10 @@ adfsdf
 sadf
 
 \subsection{Slope field}
-In \textit{mathematics}, a \textbf{slope field} (or \textbf{direction field}) is a graphical representation of the solutions of a first-order differential equation. It is useful because it can be created without solving the differential equation analytically. The representation may be used to qualitatively visualize solutions, or to numerically approximate them  \cite{strogatz1994nonlinear}.
+In \textit{mathematics}, a \textbf{slope field} (or \textbf{direction field}) is a graphical representation of the solutions of a first-order differential equation. It is useful because it can be created without solving the differential equation analytically. The representation may be used to qualitatively visualize solutions, or to numerically approximate them \cite{strogatz1994nonlinear}.
 
 \section{Limit Cycle}
-A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means that neighboring trajectories are not closed - they spiral either towards or away from the limit cycle.
+A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means that neighboring trajectories are not closed - they spiral either towards or away from the limit cycle. The particle on the limit cycle, appears after one period on the exact same spot.
 
 \begin{figure}[ht!]
 	\centering
@@ -106,12 +106,14 @@ If all neighboring trajectories approach the limit cycle, we say the limit cycle
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.5\linewidth]{lcycle_unstable}
+	\includegraphics[width=.55\linewidth]{lcycle_unstable}
 	\caption{Unstable limit cycle. Trajectories spiral away from it.}
 	\label{f:lc_unst}
 \end{figure}
 
-Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic ring of a pace maker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillation of some preferred period, waveform, and amplitude. If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear}.
+Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic ring of a pace maker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillation of some preferred period, waveform, and amplitude. Oscillations are important part of electronics \cite{oscillations}, too.
+
+If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear}.
 
 \begin{figure}[ht!]
 	\centering
@@ -126,10 +128,18 @@ A non-linear second-order ordinary differential equation
 \label{eq:lnrd}
 y''+f(x)x'+x=0
 \end{equation}
-This equation describes the dynamics of a system with one degree of freedom in the presence of a linear restoring force and non-linear damping. If the function $f$ has the property
+
+This equation describes the dynamics of a system with one degree of freedom in the presence of a linear restoring force and non-linear damping. The function $f$ has properties
+\begin{align*}
+f(x)&<0\quad for\,small\,|x| \\
+f(x)&>0\quad for\,large\,|x|
+\end{align*}
+that is, if for small amplitudes the system absorbs energy and for large amplitudes dissipation occurs, then in the system one can expect self-exciting oscillations.
+
+Li\'{e}nard equation was intensely studied as it can be used to model oscillating circuits. Under certain additional assumptions Li\'{e}nard's theorem guarantees the uniqueness and existence of a limit cycle for such a system.
 
 \subsection{Van der Pol Oscillator}
-The limit cycle property translated to real life application means oscillations. Oscillations are important part of electronics \cite{oscillations}. One of the most well-known oscillator model in dynamics is \textbf{Van der Pol oscillator}, described by differential equation
+One of the most well-known oscillator model in dynamics is \textbf{Van der Pol oscillator}, which is a special case of Li\'{e}nard's equation \eqref{eq:lnrd} and is described by a differential equation
 \begin{equation}
 \label{eq:vdp}
 y''-\mu\left(1-y^2\right)y'+y=0
@@ -137,13 +147,30 @@ y''-\mu\left(1-y^2\right)y'+y=0
 where $y$ is the dynamical variable and $\mu>0$ is a parameter. If $\mu=0$, then the equation reduces to the equation of simple harmonic motion
 $$y''+y=0$$
 
-The Van der Pol equation \eqref{eq:vdp} arises in the study of circuits containing vacuum tubes and is derived from earlier, Rayleigh equation \cite{nahin2001science}, known also as Rayleigh-Plesset equation - an ordinary differential equation explaining the dynamics of a spherical bubble in an infinite body of liquid.
+The Van der Pol equation \eqref{eq:vdp} arises in the study of circuits containing vacuum tubes (triode) and is derived from earlier, Rayleigh equation \cite{nahin2001science}, known also as Rayleigh-Plesset equation - an ordinary differential equation explaining the dynamics of a spherical bubble in an infinite body of liquid.
 
 Van der Pol oscillator is \textbf{self-sustainable}, \textbf{relaxation} oscillator. Self-sustainability in this context means, that the energy is fed into small oscillations and removed from large oscillations. Relaxation means, that the energy is gradually accumulating over time and then quickly released (relaxed). In electronics jargon, the relaxation oscillator is also called a \textit{free-running} oscillator. As already explained, it does not require neither one (monostable), nor two (bistable) inputs for transitioning between states, it "runs" by itself, thus free-running.
 
+\subsection{Van der Pol's Equation Limit Cycle}
+Li\'{e}nard's theorem can be used to prove that the system described by  Van der Pol equation \eqref{eq:vdp} has a limit cycle \cite{sternberg2014dynamical}. If we want to visualize it, the one-dimensional form of equation must be first \textit{transformed} to the two-dimensional form. Applying the Li\'{e}nard transformation $$y=x-\frac{x^3}{3}-\frac{\dot x}{\mu}$$ where dot indicates the time derivative, the system can be written in it's two-dimensional form \cite{kaplan2012understanding}:
+\begin{align*}
+\dot x &= \mu \left(x-\frac13 x^3 -y\right) \\
+\dot y &= \frac{1}{\mu} x
+\end{align*}
 
+However, this form is not well-known. Far common form uses the transformation $y=\dot x$, that yields
+\begin{align*}
+\dot x &= y \\
+\dot y &= \mu\left(1-x^2\right)y-x
+\end{align*}
+which can be plotted onto direction field, as shown on \cref{f:vdp_m}. It is possible to see the stable limit cycle as well as trajectories from both sides attracted towards it.
 
-
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=.85\linewidth]{vdp_maxima}
+	\caption{Van der Pol oscillator plotted on the direction field. Parameter $\mu=1$. The wxMaxima computing software was used for this purpose. }
+	\label{f:vdp_m}
+\end{figure}
 
 
 \section{Conclusion}
