@@ -122,6 +122,11 @@ If the system is perturbed slightly, it always returns to the standard cycle. Li
 	\label{f:lc_hst}
 \end{figure}
 
+\subsection{Damping}
+Mentioning damping is important mainly because, in a real world, oscillations eventually stop, due to Newton's law of Thermodynamics (the frictional force). In electronics, there is no ideal oscillator, too - small amount of energy is lost every cycle, due to electric resistance.
+
+Generally, the damping is linear either linear or non-linear. As a rule of thumb, the linear one is easily modeled mathematically, obeying known rules, while the non-linear one is not \cite{institute1989estimation}. There are some use cases, where non-linear damping is advantageous, but the research is still ongoing about this topic.
+
 \subsection{Li\'{e}nard Equation}
 A non-linear second-order ordinary differential equation
 \begin{equation}
@@ -146,6 +151,7 @@ y''-\mu\left(1-y^2\right)y'+y=0
 \end{equation}
 where $y$ is the dynamical variable and $\mu>0$ is a parameter. If $\mu=0$, then the equation reduces to the equation of simple harmonic motion
 $$y''+y=0$$
+The $\mu$ parameter determines the shape of the limit cycle. As it approaches 0, it gets the shape of a circle. On the other hand, increasing the paramter, involves sharpening of the curves.
 
 The Van der Pol equation \eqref{eq:vdp} arises in the study of circuits containing vacuum tubes (triode) and is derived from earlier, Rayleigh equation \cite{nahin2001science}, known also as Rayleigh-Plesset equation - an ordinary differential equation explaining the dynamics of a spherical bubble in an infinite body of liquid.
 
@@ -165,10 +171,12 @@ However, this form is not well-known. Far common form uses the transformation $y
 \end{align*}
 which can be plotted onto direction field, as shown on \cref{f:vdp_m}. It is possible to see the stable limit cycle as well as trajectories from both sides attracted towards it.
 
+The Van der Pol oscillator can be forced too, however, this work does not aim to investigate further in this direction.
+
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=.85\linewidth]{vdp_maxima}
-	\caption{Van der Pol oscillator plotted on the direction field. Parameter $\mu=1$. The wxMaxima computing software was used for this purpose. }
+	\caption{Phase portrait of the unforced Van der Pol oscillator, showing a limit cycle and the direction field Parameter $\mu=1$. The wxMaxima computing software was used for this purpose. }
 	\label{f:vdp_m}
 \end{figure}
 
