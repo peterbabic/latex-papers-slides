@@ -22,17 +22,26 @@
 \usepackage[style=numeric-comp,backend=biber,url=false]{biblatex}
 \addbibresource{electrical.bib}
 
+\usepackage{cleveref}
+
 
 % *** GRAPHICS RELATED PACKAGES ***
 \usepackage[pdftex]{graphicx}
 \graphicspath{{figures/}}
 \DeclareGraphicsExtensions{.pdf,.jpg,.png}
 
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+\interdisplaylinepenalty=2500
+
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor mo-de-ling}
 
 
 \begin{document}
+\boldmath
 
 \title{Dynamics in Electrical Systems}
 
@@ -88,10 +97,12 @@ A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.5\linewidth]{lcycle_stable}
+	\includegraphics[width=.6\linewidth]{lcycle_stable}
 	\caption{Stable limit cycle. Trajectories spiral towards it.}
 	\label{f:lc_st}
 \end{figure}
+
+If all neighboring trajectories approach the limit cycle, we say the limit cycle is \textbf{stable} or \textit{attracting}, as shown on \cref{f:lc_st}. Otherwise the limit cycle is \textbf{unstable}, or in exceptional cases, \textbf{half-stable}. Stable  limit cycles are very important scientifically they model systems that exhibit self-sustained oscillations. In other words, these systems oscillate even in the absence of external periodic forcing. 
 
 \begin{figure}[ht!]
 	\centering
@@ -100,6 +111,8 @@ A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means
 	\label{f:lc_unst}
 \end{figure}
 
+Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic ring of a pace maker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillation of some preferred period, waveform, and amplitude. If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear}.
+
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\linewidth]{lcycle_hstable}
@@ -107,7 +120,28 @@ A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means
 	\label{f:lc_hst}
 \end{figure}
 
-If all neighboring trajectories approach the limit cycle, we say the limit cycle is stable or attracting. Otherwise the limit cycle is unstable, or in exceptional cases, half-stable. Stable  limit cycles are very important scientifically they model systems that exhibit self-sustained oscillations. In other words, these systems oscillate even in the absence of external periodic forcing. Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic ring of a pace maker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillation of some preferred period, waveform, and amplitude. If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear}.
+\subsection{Li\'{e}nard Equation}
+A non-linear second-order ordinary differential equation
+\begin{equation}
+\label{eq:lnrd}
+y''+f(x)x'+x=0
+\end{equation}
+This equation describes the dynamics of a system with one degree of freedom in the presence of a linear restoring force and non-linear damping. If the function $f$ has the property
+
+\subsection{Van der Pol Oscillator}
+The limit cycle property translated to real life application means oscillations. Oscillations are important part of electronics \cite{oscillations}. One of the most well-known oscillator model in dynamics is \textbf{Van der Pol oscillator}, described by differential equation
+\begin{equation}
+\label{eq:vdp}
+y''-\mu\left(1-y^2\right)y'+y=0
+\end{equation}
+where $y$ is the dynamical variable and $\mu>0$ is a parameter. If $\mu=0$, then the equation reduces to the equation of simple harmonic motion
+$$y''+y=0$$
+
+The Van der Pol equation \eqref{eq:vdp} arises in the study of circuits containing vacuum tubes and is derived from earlier, Rayleigh equation \cite{nahin2001science}, known also as Rayleigh-Plesset equation - an ordinary differential equation explaining the dynamics of a spherical bubble in an infinite body of liquid.
+
+Van der Pol oscillator is \textbf{self-sustainable}, \textbf{relaxation} oscillator. Self-sustainability in this context means, that the energy is fed into small oscillations and removed from large oscillations. Relaxation means, that the energy is gradually accumulating over time and then quickly released (relaxed). In electronics jargon, the relaxation oscillator is also called a \textit{free-running} oscillator. As already explained, it does not require neither one (monostable), nor two (bistable) inputs for transitioning between states, it "runs" by itself, thus free-running.
+
+
 
 
 
