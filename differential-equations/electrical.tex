@@ -133,16 +133,16 @@ If the system is perturbed slightly, it always returns to the standard cycle. Li
 \subsection{Damping}
 Mentioning damping is important mainly because, in a real world, oscillations eventually stop, due to Newton's law of Thermodynamics (the frictional force). In electronics, there is no ideal oscillator, too - small amount of energy is lost every cycle, due to electric resistance.
 
-Generally, the damping is linear either linear or non-linear. As a rule of thumb, the linear one is easily modeled mathematically, obeying known rules, while the non-linear one is not \cite{institute1989estimation}. There are some use cases, where non-linear damping is advantageous, but the research is still ongoing about this topic.
+Generally, the damping is linear either linear or nonlinear. As a rule of thumb, the linear one is easily modeled mathematically, obeying known rules, while the nonlinear one is not \cite{institute1989estimation}. There are some use cases, where nonlinear damping is advantageous, but the research is still ongoing about this topic.
 
 \subsection{Li\'{e}nard Equation}
-A non-linear second-order ordinary differential equation
+A nonlinear second-order ordinary differential equation
 \begin{equation}
 \label{eq:lnrd}
 y''+f(x)x'+x=0
 \end{equation}
 
-This equation describes the dynamics of a system with one degree of freedom in the presence of a linear restoring force and non-linear damping. The function $f$ has properties
+This equation describes the dynamics of a system with one degree of freedom in the presence of a linear restoring force and nonlinear damping. The function $f$ has properties
 \begin{align*}
 f(x)&<0\quad for\,small\,|x| \\
 f(x)&>0\quad for\,large\,|x|
@@ -188,6 +188,23 @@ The Van der Pol oscillator can be forced too, however, this work does not aim to
 	\label{f:vdp_m}
 \end{figure}
 
+
+\section{Miscellaneous Applications}
+The modeling met some more advanced applications in electronics field, too. We will briefly summarize some of them, in this section.
+
+\subsection{Josephson Junctions}
+\textbf{Josephson junctions} are superconducting devices that are capable of generating voltage oscillations of extraordinary high frequency, typically 10\textsuperscript{10} - 10\textsuperscript{11} cycles per second \cite{van1981principles}. They consist of two superconducting layers, separated by a very thin insulator that weakly couples them, as shown on \cref{f:jjunc}.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.4\linewidth]{jjunc}
+	\caption{The physical structure of a Josephson Junction. Shown for ilustration purposes.}
+	\label{f:jjunc}
+\end{figure}
+
+Although quantum mechanics is required to explain the origin of the Josephson effect, we can nevertheless dive into dynamics of Josephson junctions in classical terms. They have been particularly useful for \textit{experimental} studies of nonlinear dynamics, because the equation governing a single junction resembles the one of a pendulum.
+
+Josephson junctions are used to detect extremely low electric potentials and are used for instance, to detect far-infrared radiation from distant galaxies. They are also formed to arrays, because there is a great potential seen in this configuration, however, all the effects are yet to be fully understood.
 
 \section{Conclusion}
 The conclusion goes here.
