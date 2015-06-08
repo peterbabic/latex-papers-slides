@@ -83,16 +83,16 @@ differential, dynamics, electrical, equation, modeling, ordinary, system
  
 \hfill June 03, 2015
 
-\section{Dynamical System}
+\section{Dynamical Systems}
 \textbf{Dynamical systems} are mathematical objects used to model physical phenomena whose state (or instantaneous description) changes over time. These models are used in financial and economic forecasting, environmental modeling, medical diagnosis, industrial equipment diagnosis, and a host of other applications.
 
 For the most part, applications fall into three broad categories: predictive (also referred to as generative), in which the objective is to predict future states of the system from observations of the past and present states of the system, diagnostic, in which the objective is to infer what possible past states of the system might have led to the present state of the system (or observations leading up to the present state), and, finally, applications in which the objective is neither to predict the future nor explain the past but rather to provide a theory for the physical phenomena. These three categories correspond roughly to the need to predict, explain, and understand physical phenomena.
 
-\section{Differential Equations}
+\subsection{Differential Equations}
 A \textbf{differential equation} is any equation which contains derivatives, either ordinary derivatives or partial derivatives.
 
 \subsection{Direction Field}
-Understanding \textbf{direction fields} (or \textbf{slope fields)} and what they tell us about a differential equation and its solution is important and can be introduced without any knowledge of how to solve a differential equation and so can be done here before we get into solving them.  So, having some information about the solution to a differential equation without actually having the solution is a nice idea that needs some investigation.
+Understanding \textbf{direction fields} (or \textbf{slope fields)} and what they tell us about a differential equation and its solution is important and can be introduced without any knowledge of how to solve a differential equation and so can be done before the getting to actually solving them. 
  
 Next, since we need a differential equation to work with this is a good section to show you that differential equations occur naturally in many cases and how we get them.  Almost every physical situation that occurs in nature can be \textit{described} with an appropriate differential equation.  
  
@@ -100,8 +100,11 @@ The process of describing a physical situation with a differential equation is c
 
 The direction fields are important because they can provide a \textit{sketch of solution}, if exist, and a \textit{long term behavior} - most of the time we are interested in general picture about what is happening, as the time passes.
 
-\section{Limit Cycle}
-A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means that neighboring trajectories are not closed - they spiral either towards or away from the limit cycle. The particle on the limit cycle, appears after one period on the exact same spot.
+\section{Periodic Orbits}
+A periodic orbit corresponds to a special type of solution for a dynamical system, namely one which repeats itself in time. A dynamical system exhibiting a stable periodic orbit is often called an \textit{oscillator}. 
+
+\subsection{Limit Cycle}
+A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means that neighboring trajectories are not closed - they spiral either towards or away from the limit cycle. The particle on the limit cycle, appears after one period on the exact same spot. Limit cycle appears on on a plane, opposed to a periodic orbit, that happens to be a vector.
 
 \begin{figure}[ht!]
 	\centering
@@ -135,6 +138,9 @@ Mentioning damping is important mainly because, in a real world, oscillations ev
 
 Generally, the damping is linear either linear or nonlinear. As a rule of thumb, the linear one is easily modeled mathematically, obeying known rules, while the nonlinear one is not \cite{institute1989estimation}. There are some use cases, where nonlinear damping is advantageous, but the research is still ongoing about this topic.
 
+\section{Conducted Studies}
+sadfa
+
 \subsection{Li\'{e}nard Equation}
 A nonlinear second-order ordinary differential equation
 \begin{equation}
@@ -151,7 +157,7 @@ that is, if for small amplitudes the system absorbs energy and for large amplitu
 
 Li\'{e}nard equation was intensely studied as it can be used to model oscillating circuits. Under certain additional assumptions Li\'{e}nard's theorem guarantees the uniqueness and existence of a limit cycle for such a system.
 
-\subsection{Van der Pol Oscillator}
+\subsection{Van der Pol Equation}
 One of the most well-known oscillator model in dynamics is \textbf{Van der Pol oscillator}, which is a special case of Li\'{e}nard's equation \eqref{eq:lnrd} and is described by a differential equation
 \begin{equation}
 \label{eq:vdp}
@@ -165,7 +171,7 @@ The Van der Pol equation \eqref{eq:vdp} arises in the study of circuits containi
 
 Van der Pol oscillator is \textbf{self-sustainable}, \textbf{relaxation} oscillator. Self-sustainability in this context means, that the energy is fed into small oscillations and removed from large oscillations. Relaxation means, that the energy is gradually accumulating over time and then quickly released (relaxed). In electronics jargon, the relaxation oscillator is also called a \textit{free-running} oscillator. As already explained, it does not require neither one (monostable), nor two (bistable) inputs for transitioning between states, it "runs" by itself, thus free-running.
 
-\subsection{Van der Pol's Equation Limit Cycle}
+\subsection{Periodicity in Van der Pol's Oscillator}
 Li\'{e}nard's theorem can be used to prove that the system described by  Van der Pol equation \eqref{eq:vdp} has a limit cycle \cite{sternberg2014dynamical}. If we want to visualize it, the one-dimensional form of equation must be first \textit{transformed} to the two-dimensional form. Applying the Li\'{e}nard transformation $$y=x-\frac{x^3}{3}-\frac{\dot x}{\mu}$$ where dot indicates the time derivative, the system can be written in it's two-dimensional form \cite{kaplan2012understanding}:
 \begin{align*}
 \dot x &= \mu \left(x-\frac13 x^3 -y\right) \\
@@ -179,6 +185,8 @@ However, this form is not well-known. Far common form uses the transformation $y
 \end{align*}
 which can be plotted onto direction field, as shown on \cref{f:vdp_m}. It is possible to see the stable limit cycle as well as trajectories from both sides attracted towards it.
 
+
+
 The Van der Pol oscillator can be forced too, however, this work does not aim to investigate further in this direction.
 
 \begin{figure}[ht!]
@@ -189,8 +197,8 @@ The Van der Pol oscillator can be forced too, however, this work does not aim to
 \end{figure}
 
 
-\section{Miscellaneous Applications}
-The modeling met some more advanced applications in electronics field, too. We will briefly summarize some of them, in this section.
+\section{Applications in Electronics}
+%The modeling met some more advanced applications in electronics field, too. We will briefly summarize some of them, in this section.
 
 \subsection{Josephson Junctions}
 \textbf{Josephson junctions} are superconducting devices that are capable of generating voltage oscillations of extraordinary high frequency, typically 10\textsuperscript{10} - 10\textsuperscript{11} cycles per second \cite{van1981principles}. They consist of two superconducting layers, separated by a very thin insulator that weakly couples them, as shown on \cref{f:jjunc}.
