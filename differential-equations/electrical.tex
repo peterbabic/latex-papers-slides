@@ -89,14 +89,24 @@ differential, dynamics, electrical, equation, modeling, ordinary, system
 For the most part, applications fall into three broad categories: predictive (also referred to as generative), in which the objective is to predict future states of the system from observations of the past and present states of the system, diagnostic, in which the objective is to infer what possible past states of the system might have led to the present state of the system (or observations leading up to the present state), and, finally, applications in which the objective is neither to predict the future nor explain the past but rather to provide a theory for the physical phenomena. These three categories correspond roughly to the need to predict, explain, and understand physical phenomena.
 
 \subsection{Differential Equations}
-A \textbf{differential equation} is any equation which contains derivatives, either ordinary derivatives or partial derivatives.
+A \textbf{differential equation} is any equation which contains derivatives, either ordinary derivatives or partial derivatives.Almost every physical situation that occurs in nature can be \textit{described} with an appropriate differential equation. 
+
+The process of describing a physical situation with a differential equation is called \textbf{modeling}.
+
+Differential equations are generally concerned about three questions:
+\begin{enumerate}
+\item Given a differential equation will a solution exist? 
+\item If a differential equation does have a solution how many solutions are there?
+\item If a differential equation does have a solution can we find it?
+\end{enumerate}
+
+There are two types of differential equations. \textit{Ordinary differential equations} (PDE) and \textit{Partial differential equations}. Our study won't go into further detail about PDE and will stay focused mainly on ODE.
+
 
 \subsection{Direction Field}
 Understanding \textbf{direction fields} (or \textbf{slope fields)} and what they tell us about a differential equation and its solution is important and can be introduced without any knowledge of how to solve a differential equation and so can be done before the getting to actually solving them. 
- 
-Next, since we need a differential equation to work with this is a good section to show you that differential equations occur naturally in many cases and how we get them.  Almost every physical situation that occurs in nature can be \textit{described} with an appropriate differential equation.  
- 
-The process of describing a physical situation with a differential equation is called \textbf{modeling}. We will be looking at modeling several times throughout this class.
+
+
 
 The direction fields are important because they can provide a \textit{sketch of solution}, if exist, and a \textit{long term behavior} - most of the time we are interested in general picture about what is happening, as the time passes.
 
@@ -124,7 +134,7 @@ If all neighboring trajectories approach the limit cycle, we say the limit cycle
 
 Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic ring of a pace maker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillation of some preferred period, waveform, and amplitude. Oscillations are important part of electronics \cite{oscillations}, too.
 
-If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear} \cite{strogatz1994nonlinear}.
+If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear}.
 
 \begin{figure}[ht!]
 	\centering
@@ -185,8 +195,6 @@ However, this form is not well-known. Far common form uses the transformation $y
 \end{align*}
 which can be plotted onto direction field, as shown on \cref{f:vdp_m}. It is possible to see the stable limit cycle as well as trajectories from both sides attracted towards it.
 
-
-
 The Van der Pol oscillator can be forced too, however, this work does not aim to investigate further in this direction.
 
 \begin{figure}[ht!]
@@ -210,7 +218,7 @@ The Van der Pol oscillator can be forced too, however, this work does not aim to
 	\label{f:jjunc}
 \end{figure}
 
-Although quantum mechanics is required to explain the origin of the Josephson effect, we can nevertheless dive into dynamics of Josephson junctions in classical terms. They have been particularly useful for \textit{experimental} studies of nonlinear dynamics, because the equation governing a single junction resembles the one of a pendulum.
+Although quantum mechanics is required to explain the origin of the Josephson effect, we can nevertheless dive into dynamics of Josephson junctions in classical terms. They have been particularly useful for \textit{experimental} studies of nonlinear dynamics, because the equation governing a single junction resembles the one of a pendulum \cite{strogatz1994nonlinear}.
 
 Josephson junctions are used to detect extremely low electric potentials and are used for instance, to detect far-infrared radiation from distant galaxies. They are also formed to arrays, because there is a great potential seen in this configuration, however, all the effects are yet to be fully understood.
 
