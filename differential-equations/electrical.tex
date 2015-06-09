@@ -110,6 +110,17 @@ Understanding \textbf{direction fields} (or \textbf{slope fields)} and what they
 
 The direction fields are important because they can provide a \textit{sketch of solution}, if exist, and a \textit{long term behavior} - most of the time we are interested in general picture about what is happening, as the time passes.
 
+\subsection{Laplace Transform}
+The \textbf{Laplace transform} is an integral transform perhaps second only to the Fourier transform in its utility in solving physical problems. The Laplace transform \eqref{eq:lpl} is particularly useful in solving linear ordinary differential equations such as those arising in the analysis of electronic circuits. The Laplace transform $\mathcal{L}$
+\begin{equation}
+\label{eq:lpl} 
+\mathcal{L}[f(t)](s)=\int{0}{\infty} f(t)e^{-st}dt
+\end{equation}
+where $f(t)$ is defined for $t\le 0$ - this is it's most common form and is called \textit{unilateral}.
+
+Most important properties of Laplace transform is that differentiation and integration become multiplication and division. The transform turns integral equations and differential equations to polynomial equations, which are much easier to solve. Once solved, use of the inverse Laplace transform reverts to the time domain.
+
+
 \section{Periodic Orbits}
 A periodic orbit corresponds to a special type of solution for a dynamical system, namely one which repeats itself in time. A dynamical system exhibiting a stable periodic orbit is often called an \textit{oscillator}. 
 
