@@ -206,11 +206,29 @@ The Van der Pol oscillator can be forced too, however, this work does not aim to
 
 
 \section{Applications in Electronics}
-%The modeling met some more advanced applications in electronics field, too. We will briefly summarize some of them, in this section.
+This is the main section of our work. We will investigate, what is the behavior of electrical components in circuits with respect to time and model them with differential equations.
 
+\textbf{Resistor} is a linear component. It is described by an \textbf{Ohm's law}, which states, that the voltage $V$ across it is proportional to the current $I$ passing through it's resistance $R$.
+$$V=IR$$
+
+\textbf{Inductor} is one nonlinear component. It produces a voltage drop, that is proportional to the \textit{rate of change} of the current through it, as described by \textbf{Faraday's Law}
+$$V=L\frac{dI}{dt}$$
+
+\textbf{Capacitor} is another nonlinear component. Voltage drop across it, is on the other hand proportional to the charge stored in it. This behavior is derived from  \textbf{Coulumb's law}
+$$V=\frac{1}{C}\int idt$$
+
+TU POJDE ESTE KIRCHOFF
+
+\subsection{First Order}
+asfasdf
+
+\subsection{Second Order }
+adsfsa
 
 
 \subsection{Josephson Junctions}
+Last but not least, we mention the miscellaneous phenomenon regarding nonlinear dynamics applied in the field of electrical engineering.
+
 \textbf{Josephson junctions} are superconducting devices that are capable of generating voltage oscillations of extraordinary high frequency, typically 10\textsuperscript{10} - 10\textsuperscript{11} cycles per second \cite{van1981principles}. They consist of two superconducting layers, separated by a very thin insulator that weakly couples them, as shown on \cref{f:jjunc}.
 
 \begin{figure}[ht!]
