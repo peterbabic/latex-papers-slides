@@ -107,8 +107,9 @@ There are two types of differential equations. \textit{Ordinary differential equ
 Understanding \textbf{direction fields} (or \textbf{slope fields)} and what they tell us about a differential equation and its solution is important and can be introduced without any knowledge of how to solve a differential equation and so can be done before the getting to actually solving them. 
 
 
-
 The direction fields are important because they can provide a \textit{sketch of solution}, if exist, and a \textit{long term behavior} - most of the time we are interested in general picture about what is happening, as the time passes.
+
+Example direction field, embedded in phase portrait is shown in \cref{f:vdp_m}.
 
 \subsection{Laplace Transform}
 The \textbf{Laplace transform} is an integral transform perhaps second only to the Fourier transform in its utility in solving physical problems. The Laplace transform \eqref{eq:lpl} is particularly useful in solving linear ordinary differential equations such as those arising in the analysis of electronic circuits. The Laplace transform $\mathcal{L}$
@@ -214,34 +215,8 @@ The Van der Pol oscillator can be forced too, however, this work does not aim to
 	\label{f:vdp_m}
 \end{figure}
 
-
-\section{Applications in Electronic Circuits}
-This is the main section of our work. We will investigate, what is the behavior of electrical components in circuits with respect to time and model them with differential equations.
-
-\textbf{Resistor} is a linear component. It is described by an \textbf{Ohm's law}, which states, that the voltage $V$ across it is proportional to the current $I$ passing through it's resistance $R$.
-$$V=IR$$
-
-\textbf{Inductor} is one nonlinear component. It produces a voltage drop, that is proportional to the \textit{rate of change} of the current through it, as described by \textbf{Faraday's Law}
-$$V=L\frac{dI}{dt}$$
-
-\textbf{Capacitor} is another nonlinear component. Voltage drop across it, is on the other hand proportional to the charge stored in it. This behavior is derived from  \textbf{Coulumb's law}
-$$V=\frac{1}{C}\int idt$$
-
-\textbf{Kirchhoff Current Law} (KCL) states, that the algebraic sum of the currents flowing into any junction of an electric circuit must be zero.
-
-\textbf{Kirchhoff Voltage Law} (KVL) states, that the algebraic sum of the voltage drops around any closed loop in an electric circuit must be zero.
-
-These laws allow us to model, what is happening inside the circuit with respect to time.
-
-\subsection{First-order Circuits}
-asfasdf
-
-\subsection{Second-order Circuits}
-adsfsa
-
-
 \subsection{Josephson Junctions}
-Last but not least, we mention the miscellaneous phenomenon regarding nonlinear dynamics applied in the field of electrical engineering.
+Another phenomenon regarding nonlinear dynamics applied in the field of electrical engineering is known as Josephson Junction.
 
 \textbf{Josephson junctions} are superconducting devices that are capable of generating voltage oscillations of extraordinary high frequency, typically 10\textsuperscript{10} - 10\textsuperscript{11} cycles per second \cite{van1981principles}. They consist of two superconducting layers, separated by a very thin insulator that weakly couples them, as shown on \cref{f:jjunc}.
 
@@ -255,6 +230,72 @@ Last but not least, we mention the miscellaneous phenomenon regarding nonlinear 
 Although quantum mechanics is required to explain the origin of the Josephson effect, we can nevertheless dive into dynamics of Josephson junctions in classical terms. They have been particularly useful for \textit{experimental} studies of nonlinear dynamics, because the equation governing a single junction resembles the one of a pendulum \cite{strogatz1994nonlinear}.
 
 Josephson junctions are used to detect extremely low electric potentials and are used for instance, to detect far-infrared radiation from distant galaxies. They are also formed to arrays, because there is a great potential seen in this configuration, however, all the effects are yet to be fully understood.
+
+\subsection{Applications in Electrical Circuits}
+This is the main section of our work. We will investigate, what is the behavior of electrical components in circuits with respect to time and model them with differential equations.
+
+\textbf{Resistor} is a linear component. It is described by an \textbf{Ohm's law}, which states, that the voltage $V$ across it is proportional to the current $I$ passing through it's resistance $R$.
+$$V=IR$$
+
+\textbf{Inductor} is one nonlinear component. It produces a voltage drop, that is proportional to the \textit{rate of change} of the current through it, as described by \textbf{Faraday's Law}
+$$V(t)=L\,\frac{dI}{dt}$$
+
+\textbf{Capacitor} is another nonlinear component. Voltage drop across it, is on the other hand proportional to the charge stored in it. This behavior is derived from  \textbf{Coulumb's law}
+$$V(t)=\frac{1}{C}\int i\,dt$$
+
+\textbf{Kirchhoff Current Law} (KCL) states, that the algebraic sum of the currents flowing into any junction of an electric circuit must be zero.
+
+\textbf{Kirchhoff Voltage Law} (KVL) states, that the algebraic sum of the voltage drops around any closed loop in an electric circuit must be zero.
+
+These laws allow us to model, what is happening inside the circuit with respect to time \cite{lynch2013dynamical}.
+
+\section{First-order Electrical Circuits}
+First order circuits generally contain one energy-storing (nonlinear) element.
+
+\subsection{RL Circuit}
+The RL circuit shown on \cref{f:rl} has a resistor and an inductor connected in series. A \textit{constant} voltage $V$ is applied when the switch is closed.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.75\linewidth]{rl}
+	\caption{RL circuit diagram.}
+	\label{f:rl}
+\end{figure}
+
+Applying the KVL, we obtain the algebraic sums of all the voltage drops as an ODE with respect to time
+$$Ri+L\,\frac{di}{dt}=V(t)$$
+solving which we obtain 
+$$i=\frac{V}{R}\left(1-e^{-(R/L)t}\right)$$
+The solving process is quite lenghty and is not a point of this work. For more details see \cite{bird2014electrical}.
+
+If the applied voltage is not constant, but rather \textit{variable}, in the form of $V(t)=A\,cos(\omega(t) + \phi)$ or $V(t)=A\,sin(\omega(t) + \phi)$, then things get complex.
+
+\subsection{RC Circuits}
+The RC circuit shown on \cref{f:rc} has a resistor and unexpectedly, a capacitor connected in series. Again, A \textit{constant} voltage $V$ is applied when the switch is closed.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.75\linewidth]{rc}
+	\caption{RC circuit diagram.}
+	\label{f:rc}
+\end{figure}
+
+Kirchhoff's voltage law says the total voltages must be zero. So applying this law to a series RC circuit results in the equation
+$$Ri+\frac{1}{C}\int i\,dt=V(t)$$
+Again, to solve it, we can turn it into a differential equation, by differentiating throughout with respect to $t$
+$$R\,\frac{di}{dt}+\frac{i}{C}=0$$
+solving which we obtain
+$$i=\frac{V}{R}\,e^{-t/RC}$$
+
+
+
+
+
+\section{Second-order Electrical Circuits}
+adsfsa
+
+
+
 
 \section{Conclusion}
 The conclusion goes here.
