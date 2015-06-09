@@ -67,7 +67,7 @@ The abstract goes here.
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-differential, dynamics, electrical, equation, modeling, ordinary, system
+circuits, cycle, differential, dynamics, electrical, equation, limit, modeling, ordinary, system
 \end{IEEEkeywords}
 
 
@@ -84,7 +84,7 @@ differential, dynamics, electrical, equation, modeling, ordinary, system
 \hfill June 03, 2015
 
 \section{Dynamical Systems}
-\textbf{Dynamical systems} are mathematical objects used to model physical phenomena whose state (or instantaneous description) changes over time. These models are used in financial and economic forecasting, environmental modeling, medical diagnosis, industrial equipment diagnosis, and a host of other applications.
+\textbf{Dynamical systems} are mathematical objects used to model physical phenomena whose state (or instantaneous description) changes over time \cite{katok1997introduction}. These models are used in financial and economic forecasting, environmental modeling, medical diagnosis, industrial equipment diagnosis, and a host of other applications.
 
 For the most part, applications fall into three broad categories: predictive (also referred to as generative), in which the objective is to predict future states of the system from observations of the past and present states of the system, diagnostic, in which the objective is to infer what possible past states of the system might have led to the present state of the system (or observations leading up to the present state), and, finally, applications in which the objective is neither to predict the future nor explain the past but rather to provide a theory for the physical phenomena. These three categories correspond roughly to the need to predict, explain, and understand physical phenomena.
 
@@ -123,7 +123,7 @@ The \textbf{Laplace transform} is an integral transform perhaps second only to t
 \end{equation}
 where $f(t)$ is defined for $t\le 0$ - this is it's most common form and is called \textit{unilateral}.
 
-Most important properties of Laplace transform is that differentiation and integration become multiplication and division. The transform turns integral equations and differential equations to polynomial equations, which are much easier to solve. Once solved, use of the inverse Laplace transform reverts to the time domain.
+Most important properties of Laplace transform is that differentiation and integration become multiplication and division. The transform turns integral equations and differential equations to polynomial equations, which are much easier to solve \cite{schiff2013laplace}. Once solved, use of the inverse Laplace transform reverts to the time domain.
 
 
 \section{Periodic Orbits}
@@ -325,8 +325,14 @@ which is the second order linear differential equation (homogenous).
 
 The circuit itself is a damped oscillator. Writing the equation in its auxiliary form and finding its roots, we could obtain a formula for it's \textit{damping factor}, however, it is a topic far off the boundaries of this work.
 
+If the non-constant (variable) driving force, the things get even more complicated. For instance, Laplace transform can be used to solve the equations.
+
 \section{Conclusion}
-The conclusion goes here.
+We have dived into multiple mathematical theories and science fields that has some connection to dynamical systems and electrical circuits. The topics mentioned are only scratch on the surface. Every single one could be written in separate paper or even a book. In fact, thousands of book have been written in mentioned topics and there are probably thousands more to come.
+
+There are multiple important topics, namely \textit{bifurcations} and \textit{chaos}, but we decided to skip them, because of the vast amount of information, they represent and also due to lack of direct connection between them and electical circuits.
+
+The main goal was to get some general idea about the connections between the terms and get some picture of the problematic. Although probably in a chaotic way, that goal was met and we tried to be as concise as possible along the way.
 
 
 % if have a single appendix:
