@@ -159,8 +159,7 @@ Mentioning damping is important mainly because, in a real world, oscillations ev
 
 Generally, the damping is linear either linear or nonlinear. As a rule of thumb, the linear one is easily modeled mathematically, obeying known rules, while the nonlinear one is not \cite{institute1989estimation}. There are some use cases, where nonlinear damping is advantageous, but the research is still ongoing about this topic.
 
-\section{Conducted Studies}
-sadfa
+\section{Advanced Studies}
 
 \subsection{Li\'{e}nard Equation}
 A nonlinear second-order ordinary differential equation
@@ -176,7 +175,7 @@ f(x)&>0\quad for\,large\,|x|
 \end{align*}
 that is, if for small amplitudes the system absorbs energy and for large amplitudes dissipation occurs, then in the system one can expect self-exciting oscillations.
 
-Li\'{e}nard equation was intensely studied as it can be used to model oscillating circuits. Under certain additional assumptions Li\'{e}nard's theorem guarantees the uniqueness and existence of a limit cycle for such a system.
+\textbf{Li\'{e}nard equation} was intensely studied as it can be used to model oscillating circuits. Under certain additional assumptions Li\'{e}nard's theorem guarantees the uniqueness and existence of a limit cycle for such a system.
 
 \subsection{Van der Pol Equation}
 One of the most well-known oscillator model in dynamics is \textbf{Van der Pol oscillator}, which is a special case of Li\'{e}nard's equation \eqref{eq:lnrd} and is described by a differential equation
@@ -216,7 +215,7 @@ The Van der Pol oscillator can be forced too, however, this work does not aim to
 \end{figure}
 
 
-\section{Applications in Electronics}
+\section{Applications in Electronic Circuits}
 This is the main section of our work. We will investigate, what is the behavior of electrical components in circuits with respect to time and model them with differential equations.
 
 \textbf{Resistor} is a linear component. It is described by an \textbf{Ohm's law}, which states, that the voltage $V$ across it is proportional to the current $I$ passing through it's resistance $R$.
@@ -228,12 +227,16 @@ $$V=L\frac{dI}{dt}$$
 \textbf{Capacitor} is another nonlinear component. Voltage drop across it, is on the other hand proportional to the charge stored in it. This behavior is derived from  \textbf{Coulumb's law}
 $$V=\frac{1}{C}\int idt$$
 
-TU POJDE ESTE KIRCHOFF
+\textbf{Kirchhoff Current Law} (KCL) states, that the algebraic sum of the currents flowing into any junction of an electric circuit must be zero.
 
-\subsection{First Order}
+\textbf{Kirchhoff Voltage Law} (KVL) states, that the algebraic sum of the voltage drops around any closed loop in an electric circuit must be zero.
+
+These laws allow us to model, what is happening inside the circuit with respect to time.
+
+\subsection{First-order Circuits}
 asfasdf
 
-\subsection{Second Order }
+\subsection{Second-order Circuits}
 adsfsa
 
 
