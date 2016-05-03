@@ -20,7 +20,7 @@
 
 
 \usepackage[style=numeric-comp,backend=biber,url=false]{biblatex}
-\addbibresource{electrical.bib}
+\addbibresource{thesis-paper.bib}
 
 \usepackage{cleveref}
 
@@ -43,17 +43,17 @@
 \begin{document}
 \boldmath
 
-\title{Dynamics in Electrical Systems}
+\title{Multi-purpose system for measuring
+electrical power supplied by electric
+socketss}
 
-\author{Jakub~Hanak,
-        Peter~Babic\\% <-this % stops a space
-        Dept. of Computers and Informatics, FEI TU of Kosice\\%
-        Slovak Republic\\%
-        jakub.hanak2@gmail.com, babicpet@gmail.com%
+\author{Peter~Babič\\% <-this % stops a space
+        Department of Theoretical and Industrial Electrical Engineering (DTIEE)\\%
+        babicpet@gmail.com%
 }
 
 % The paper headers
-\markboth{Paper for Modeling course, June~2015}%
+\markboth{Paper covering Masters thesis, May~2016}%
 {}
 
 
@@ -132,32 +132,32 @@ A periodic orbit corresponds to a special type of solution for a dynamical syste
 \subsection{Limit Cycle}
 A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means that neighboring trajectories are not closed - they spiral either towards or away from the limit cycle. The particle on the limit cycle, appears after one period on the exact same spot. Limit cycle appears on on a plane, opposed to a periodic orbit, that happens to be a vector.
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.6\linewidth]{lcycle_stable}
-	\caption{Stable limit cycle. Trajectories spiral towards it.}
-	\label{f:lc_st}
-\end{figure}
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=.6\linewidth]{lcycle_stable}
+%	\caption{Stable limit cycle. Trajectories spiral towards it.}
+%	\label{f:lc_st}
+%\end{figure}
 
 If all neighboring trajectories approach the limit cycle, we say the limit cycle is \textbf{stable} or \textit{attracting}, as shown on \cref{f:lc_st}. Otherwise the limit cycle is \textbf{unstable}, or in exceptional cases, \textbf{half-stable}. Stable limit cycles are very important scientifically as they model systems that exhibit self-sustained oscillations. In other words, these systems oscillate even in the absence of external periodic forcing. 
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.55\linewidth]{lcycle_unstable}
-	\caption{Unstable limit cycle. Trajectories spiral away from it.}
-	\label{f:lc_unst}
-\end{figure}
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=.55\linewidth]{lcycle_unstable}
+%	\caption{Unstable limit cycle. Trajectories spiral away from it.}
+%	\label{f:lc_unst}
+%\end{figure}
 
 Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic ring of a pace maker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillation of some preferred period, waveform, and amplitude. Oscillations are important part of electronics \cite{oscillations}, too.
 
 If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear}.
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.5\linewidth]{lcycle_hstable}
-	\caption{Half-stable (or semi-stable) limit cycle. Attract trajectories from one side and repel them from other side.}
-	\label{f:lc_hst}
-\end{figure}
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=.5\linewidth]{lcycle_hstable}
+%	\caption{Half-stable (or semi-stable) limit cycle. Attract trajectories from one side and repel them from other side.}
+%	\label{f:lc_hst}
+%\end{figure}
 
 \subsection{Damping}
 Mentioning damping is important mainly because, in a real world, oscillations eventually stop, due to Newton's law of Thermodynamics (the frictional force). In electronics, there is no ideal oscillator, too - small amount of energy is lost every cycle, due to electric resistance.
@@ -220,24 +220,24 @@ which can be plotted onto direction field, as shown on \cref{f:vdp_m}. It is pos
 
 The Van der Pol oscillator can be forced too, however, this work does not aim to investigate further in this direction.
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.85\linewidth]{vdp_maxima}
-	\caption{Phase portrait of the unforced Van der Pol oscillator, showing a limit cycle and the direction field Parameter $\mu=1$. The wxMaxima computing software was used for this purpose. }
-	\label{f:vdp_m}
-\end{figure}
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=.85\linewidth]{vdp_maxima}
+%	\caption{Phase portrait of the unforced Van der Pol oscillator, showing a limit cycle and the direction field Parameter $\mu=1$. The wxMaxima computing software was used for this purpose. }
+%	\label{f:vdp_m}
+%\end{figure}
 
 \subsection{Josephson Junctions}
 Another phenomenon regarding nonlinear dynamics applied in the field of electrical engineering is known as Josephson Junction.
 
 \textbf{Josephson junctions} are superconducting devices that are capable of generating voltage oscillations of extraordinary high frequency, typically 10\textsuperscript{10} - 10\textsuperscript{11} cycles per second \cite{van1981principles}. They consist of two superconducting layers, separated by a very thin insulator that weakly couples them, as shown on \cref{f:jjunc}.
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.4\linewidth]{jjunc}
-	\caption{The physical structure of a Josephson Junction. Shown for ilustration purposes.}
-	\label{f:jjunc}
-\end{figure}
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=.4\linewidth]{jjunc}
+%	\caption{The physical structure of a Josephson Junction. Shown for ilustration purposes.}
+%	\label{f:jjunc}
+%\end{figure}
 
 Although quantum mechanics is required to explain the origin of the Josephson effect, we can nevertheless dive into dynamics of Josephson junctions in classical terms. They have been particularly useful for \textit{experimental} studies of nonlinear dynamics, because the equation governing a single junction resembles the one of a pendulum \cite{strogatz1994nonlinear}.
 
@@ -267,12 +267,12 @@ First order circuits generally contain one energy-storing (nonlinear) element.
 \subsection{RL Circuit}
 The RL circuit shown on \cref{f:rl} has a resistor and an inductor connected in series. A \textit{constant} voltage $V$ is applied when the switch is closed.
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.75\linewidth]{rl}
-	\caption{RL circuit diagram.}
-	\label{f:rl}
-\end{figure}
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=.75\linewidth]{rl}
+%	\caption{RL circuit diagram.}
+%	\label{f:rl}
+%\end{figure}
 
 Applying the KVL, we obtain the algebraic sums of all the voltage drops as an ODE with respect to time
 $$Ri+L\,\frac{di}{dt}=V(t)$$
@@ -285,12 +285,12 @@ If the applied voltage is not constant, but rather \textit{variable}, in the for
 \subsection{RC Circuits}
 The RC circuit shown on \cref{f:rc} has a resistor and unexpectedly, a capacitor connected in series. Again, A \textit{constant} voltage $V$ is applied when the switch is closed.
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.75\linewidth]{rc}
-	\caption{RC circuit diagram.}
-	\label{f:rc}
-\end{figure}
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=.75\linewidth]{rc}
+%	\caption{RC circuit diagram.}
+%	\label{f:rc}
+%\end{figure}
 
 Kirchhoff's voltage law says the total voltages must be zero. So applying this law to a series RC circuit results in the equation
 $$Ri+\frac{1}{C}\int i\,dt=V(t)$$
@@ -306,12 +306,12 @@ $$i=\frac{V}{R}\,e^{-t/RC}$$
 \section{Second-order Electrical Circuits}
 Second order circuits contain both nonlinear elements. A RLC circuit consist of the resistor, the inductor and the capacitor and is shown in \cref{f:rlc}.
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.75\linewidth]{rlc}
-	\caption{RLC circuit diagram.}
-	\label{f:rlc}
-\end{figure}
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=.75\linewidth]{rlc}
+%	\caption{RLC circuit diagram.}
+%	\label{f:rlc}
+%\end{figure}
 
 In order to follow further, we must define new term, that will be used. \textbf{Electro-motive force} (EMF) is the force, that moves electrons from lower potential to the higher one, as opposed to so far mentioned electric potential, that can do it only in reverse order. The source of EMF can be for instance chemical reaction in cell battery, that induces the \textit{separation of charge}.
 
