@@ -18,6 +18,9 @@
 
 \documentclass[journal]{IEEEtran}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % load a font with all the characters
 
 \usepackage[style=numeric-comp,backend=biber,url=false]{biblatex}
 \addbibresource{thesis-paper.bib}
@@ -37,15 +40,13 @@
 \interdisplaylinepenalty=2500
 
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor mo-de-ling}
+\hyphenation{}
 
 
 \begin{document}
 \boldmath
 
-\title{Multi-purpose system for measuring
-electrical power supplied by electric
-socketss}
+\title{Multi-purpose system for measuring electrical power supplied by electric sockets}
 
 \author{Peter~Babič\\% <-this % stops a space
         Department of Theoretical and Industrial Electrical Engineering (DTIEE)\\%
@@ -62,12 +63,12 @@ socketss}
 
 
 \begin{abstract}
-The abstract goes here.
+This thesis shows the process of designing, building and programming of an inter-connected electronic system. It starts with explaining the fundamentals of the physics underlining the electronic power measurement process, transitioning into describing integrated components/modules used later in the proposed solution, such as ESP8266 Wi-Fi chip, GL.inet router board or OpenWRT - an unix-like operating system. The conceptual design of a final solution, utilising the aforementioned topics, follows. It includes diagrams describing the inner working of the hardware, and later software running on it. The manufactured device is capable of measuring the electric power provided by the electric socket to the appliance and send the measured values over Wi-Fi to the cloud, to be visualised on a custom web server employing a charting library to plot the measured quantities over time.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-circuits, cycle, differential, dynamics, electrical, equation, limit, modeling, ordinary, system
+electrical, power, socket, system
 \end{IEEEkeywords}
 
 
