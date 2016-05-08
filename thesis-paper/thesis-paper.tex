@@ -23,7 +23,7 @@
 \usepackage{lmodern} % load a font with all the characters
 
 \usepackage[style=numeric-comp,backend=biber,url=false]{biblatex}
-\addbibresource{thesis-paper.bib}
+\addbibresource{bibliography.bib}
 
 \usepackage{cleveref}
 
@@ -42,6 +42,13 @@
 % correct bad hyphenation here
 \hyphenation{}
 
+% Glossaries
+\usepackage[acronym,nopostdot,style=super,nonumberlist]{glossaries}
+\makeglossaries
+\loadglsentries[main]{glossaries}
+
+
+\usepackage{gensymb}
 
 \begin{document}
 \boldmath
@@ -63,7 +70,7 @@
 
 
 \begin{abstract}
-This thesis shows the process of designing, building and programming of an inter-connected electronic system. It starts with explaining the fundamentals of the physics underlining the electronic power measurement process, transitioning into describing integrated components/modules used later in the proposed solution, such as ESP8266 Wi-Fi chip, GL.inet router board or OpenWRT - an unix-like operating system. The conceptual design of a final solution, utilising the aforementioned topics, follows. It includes diagrams describing the inner working of the hardware, and later software running on it. The manufactured device is capable of measuring the electric power provided by the electric socket to the appliance and send the measured values over Wi-Fi to the cloud, to be visualised on a custom web server employing a charting library to plot the measured quantities over time.
+The paper shows the process of designing, building and programming of an inter-connected electronic system. It starts with explaining the fundamentals of the physics underlining the electronic power measurement process. The main part includes diagrams describing the inner working of the hardware, and later software running on it. The manufactured device is capable of measuring the electric power provided by the electric socket to the appliance and send the measured values over Wi-Fi to the cloud, to be visualised on a custom web server employing a charting library to plot the measured quantities over time.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -79,261 +86,213 @@ electrical, power, socket, system
 
 \section{Introduction}
 
-\IEEEPARstart{T}{his} this paper is intended to sum up the research done in order to understand the Dynamics in electrical systems and their underlying differential equations.
+\IEEEPARstart{T}{he} idea is to invent way of measuring the electrical power and some more related information, preferably in a non-invasive way. The non-invasive way means, that the appliance that is being measured does not require any modifications, for instance in a form of some probe or a man-in-the-middle plug, suggesting an embedded system. When the data are obtained, they are presented to the user, preferably plotted as a quantity over time, not just and actual measurement. Since the solution is going to be multi-purpose, it has to incorporate at least one additional function, than just the measurement. In this case it is going to be the remote power-on/power-off of the appliance. The name of the thesis also suggests, that the final solution has to be compatible with the electrical sockets used in the local region, in this case the European ones. Since the solution is going to be an \textit{embedded system} measuring a \textit{physical quantity}, these two topics are described in following chapters.
 
- 
-\hfill June 03, 2015
 
-\section{Dynamical Systems}
-\textbf{Dynamical systems} are mathematical objects used to model physical phenomena whose state (or instantaneous description) changes over time \cite{katok1997introduction}. These models are used in financial and economic forecasting, environmental modeling, medical diagnosis, industrial equipment diagnosis, and a host of other applications.
+\section{Electric power fundamentals} \label{s:el_power}
+In general physics terms, power is defined as the rate at which energy is transferred (or transformed). Electric energy in particular, begins as electric potential energy – what we commonly refer to as voltage. When electrons flow through that potential energy, it turns into electric energy. In most useful circuits, that electric energy transforms into some other form of energy. Electric power is measured by combining both how much electric energy is transferred, and how fast that transfer happens.
 
-For the most part, applications fall into three broad categories: predictive (also referred to as generative), in which the objective is to predict future states of the system from observations of the past and present states of the system, diagnostic, in which the objective is to infer what possible past states of the system might have led to the present state of the system (or observations leading up to the present state), and, finally, applications in which the objective is neither to predict the future nor explain the past but rather to provide a theory for the physical phenomena. These three categories correspond roughly to the need to predict, explain, and understand physical phenomena.
+The electric power P is equal to the energy consumption E divided by the consumption time t \cite{meade2002foundations}
+$$P = \frac Et$$
+where P is the electric power in watt [W], E is the energy consumption in joule [J] and 
+t is the time in seconds [s].
 
-\subsection{Differential Equations}
-A \textbf{differential equation} is any equation which contains derivatives, either ordinary derivatives or partial derivatives. Almost every physical situation that occurs in nature can be \textit{described} with an appropriate differential equation. 
+Electrical Power, in a circuit is the amount of energy that is absorbed or produced within the circuit. A source of energy such as a voltage will produce or deliver power while the connected load absorbs it. Light bulbs and heaters for example, absorb electrical power and convert it into heat or light. The higher their value or rating in watts the more power they will consume.
 
-The process of describing a physical situation with a differential equation is called \textbf{modeling}.
+\subsection{Ohm's law}
+Ohm's Law deals with the relationship between the voltage and the current in an ideal conductor. This relationship states that: the potential difference (voltage) across an ideal conductor is proportional to the current through it \cite{henry2008ohm}. The constant of proportionality is called the \textit{resistance}.
+$$I = \frac U R $$
+where I is the current expressed in amperes [A], U is the voltage, bearing the volt units [V] and R is the electrical resistance in ohms [\ohm].
 
-Differential equations are generally concerned about three questions:
+The Ohms's law can be further expanded \cite{beaty1998electric}, to get these three quantities in relationship with \textbf{power}, such as
+$$P = I \cdot U = I^2 \cdot R = \frac{U^2}R$$
+
+
+\subsection{Direct current (DC) circuits}
+Generally, Ohm's law is used on \gls{dc} circuits, containing a current of fixed magnitude (amplitude) and a definite direction associated with it. \acrlong{dc} is produced by power supplies, batteries, dynamos and solar cells to name a few.
+
+We also know that \gls{dc} power supplies do not change their value with regards to time\cite{herman2012direct}, they are a constant value flowing in a continuous steady state direction. In other words, \gls{dc} maintains the same value for all times and a constant uni-directional DC supply never changes or becomes negative unless its connections are physically reversed.
+
+
+\subsection{Waveforms and alternating current (AC) circuits} \label{ss:power_ac}
+An alternating function or \gls{ac} waveform on the other hand is defined as one that varies in both magnitude and direction in more or less even manner with respect to time making it a “bi-directional” waveform \cite{whitaker2006ac}. An AC function can represent either a power source or a signal source with the shape of an AC waveform generally following that of a mathematical sinusoid as defined by
+$$A(t) = A_{max} \cdot sin(2 \pi f t)$$
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1\linewidth,angle=0]{waveforms}
+\caption{The common types of waveforms visualised as a function of amplitude}\label{f:waveforms}
+\end{figure}
+
+The term AC or to give it its full description of Alternating Current, generally refers to a time-varying waveform with the most common of all being called a \textbf{Sinusoid} better known as a \textbf{Sinusoidal waveform}. Sinusoidal waveforms are more generally called by their short description as \textbf{Sine Waves}. Sine waves are by far one of the most important types of AC waveform used in electrical engineering.
+
+This means then that the \gls{ac} waveform is a “time-dependent signal” with the most common type of time-dependant signal being that of the Periodic Waveform. The periodic or \gls{ac} waveform is the resulting product of a rotating electrical generator. Generally, the shape of any periodic waveform can be generated using a fundamental frequency and superimposing it with harmonic signals of varying frequencies and amplitudes but that is out of the waveform fundamentals theory.
+
+Alternating voltages and currents can not be stored in batteries or cells like \gls{dc} can, it is much easier and cheaper to generate these quantities using alternators or waveform generators when they are needed. The type and shape of an AC waveform depends upon the generator or device producing them, but all \gls{ac} waveforms consist of a zero voltage line that divides the waveform into two symmetrical halves. The main characteristics of an \gls{ac} waveform \cite{nicolaides1996electrical} are defined as:
+
+\begin{itemize}
+\item \textbf{Period (T)} is the length of time in seconds that the waveform takes to repeat itself from start to finish. This can also be called the Periodic Time of the waveform for sine waves, or the Pulse Width for square waves
+\item \textbf{Frequency} is the number of times the waveform repeats itself within a one second time period. Frequency is the reciprocal of the time period, defined as $f = \frac 1 T$, with the unit of frequency being the Hertz [Hz]
+\item \textbf{Amplitude}  is the magnitude or intensity of the signal waveform 
+\end{itemize}
+
+
+\subsection{Power in AC circuits} \label{ss:ac_power}
+When a reactance (either inductive or capacitive) is present in an \gls{ac} circuit, the Ohm's law formula does not apply and different approach must be taken to express and calculate power \cite{rawlins2000basic}.
+
+\textbf{Real power} (or true power) is the power that is used to do the work on the load:
+$$P = U_{RMS} \cdot I_{RMS} \cdot cos\,\varphi$$
+where P is the real power in watts, $U_{RMS}$ is the \gls{rms} voltage, defined as $U_{peak}/\sqrt{2}$ in volts, $I_{RMS}$ is the RMS current, defined as $I_{peak}/\sqrt{2}$ in amperes and $\varphi$ is the impedance phase angle - phase difference between voltage and current.
+
+\textbf{Reactive power} on the other hand, is the power that is wasted and not used to do work on the load. Curiously, it is defined as 
+$$Q = U_{RMS} \cdot I_{RMS} \cdot sin\,\varphi$$
+with $Q$ being the reactive power in volt-ampere-reactive [var].
+
+\textbf{Apparent power} is the power that is supplied to the circuit. Definition:
+$$S = U_{RMS} \cdot I_{RMS}$$
+where the unit of apparent power $S$ is volt-ampere [VA]. It can be seen that it is not phase-angle dependent.
+
+The relation all these three quantities are in is defined as 
+$$ P^2 + Q^2 = S^2 $$
+however, again, nothing in the real world is perfect, and this relation only applies for a perfectly \textbf{sinusoidal waveforms}!
+
+
+\subsection{Phasor and phase shift}
+A phasor\cite{2009electrical} is a constant complex number representing the complex amplitude (magnitude and phase) of a sinusoidal function of time. It is usually expressed in exponential form. Phasors are used in engineering to simplify computations involving sinusoids, where they can often reduce a differential equation problem to an algebraic one. The origin of the word phasor comes from phase + vector.
+
+Phasor is a vector that represents a sinusoidally varying quantity, as a current or voltage, by means of a line rotating about a point in a plane, the magnitude of the quantity being proportional to the length of the line and the phase of the quantity being equal to the angle between the line and a reference line.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1\linewidth,angle=0]{phase_diff}
+\caption{The phase difference between voltage (blue) and current (red), the origin of phase difference of angle $\varphi$}\label{f:ph_diff}
+\end{figure}
+
+Considering the figure \ref{f:ph_diff}, the voltage waveform above starts at zero along the horizontal reference axis, but at that same instant of time the current waveform is still negative in value and does not cross this reference axis until 30\degree  later. Then there exists a Phase difference between the two waveforms as the current cross the horizontal reference axis reaching its maximum peak and zero values after the voltage waveform.
+
+As the two waveforms are no longer \textit{in-phase}, they must therefore be \textit{out-of-phase} by an amount determined by phi, $\varphi$. The waveform of the current can also be said to be \textit{lagging} behind the voltage waveform by the phase angle $\varphi$. This angle represents the phase shift (also called phase difference) between two sinusoids \cite{maxfield2011electrical}.
+
+
+\subsection{Power factor and power factor correction}
+The power factor is just a specific name for a phase shift between the sinusoids of a current and voltage. So the figure \ref{f:ph_diff} in fact shows the power factor. However, it is not expressed in a plane angle, but rather as a dimensionless number between -1 and 1.
+
+The power factor is defined as $\frac{P}{S}$, as a ratio of the real power over the apparent power\cite{dixit2010electrical}. If $\varphi$ is the phase angle between the current and voltage, then the power factor is equal to the cosine of the angle, $cos\,\varphi$.
+
+If the power factor is 1, it means that all the supplied power is completely consumed by purely resistive load. A positive power factor that is lower than 1 indicates that some power is not consumed by the load and is returned back. The lower the factor, the more power is returned. When power factor is equal to 0, the energy flow is entirely reactive, and stored energy in the load returns to the source on each cycle. A negative power factor means that the device, considered to be power load is in fact a power source (produces more power than consumes).
+
+How can this information be useful? Every load with a power factor other than 1 returns some power back to the transmission line. Since the transmission lines does have some resistance, this returned power translates to some wasted power in a form of heat. Energetic companies want to minimise the power wasted in the transmission lines to increase their profit, so numerous laws are coming into effect to correct \cite{singh2008electric} (increase) the power factor.
+
+
+
+%\subsection{Electric power measurement}
+%Measuring the electric power makes most sense on the customer appliances. The first reason is, that they generally consume power that is purchased on contract. The energetic company measures all the power used up by the end customer, but customer has no easy way to see how much and how \textit{effectively} is power used by the appliances. The second important reason is that the appliances has a standardised connector (plug) that is guaranteed to fit in all the area using it, which is not a case for example on battery powered devices (batteries has different sizes, connectors and general properties.
+%
+%When it comes to measuring the electrical power, the first and the most important thing to discuss is safety. Only after all the safety precautions had been made clear, the theory can be clarified and subsequently, the practice can be applied. 
+%
+%If not handled with care, operating or manipulating with voltage can cause permanent damage to appliance or health, or can cause fire or even death. Thus, respect, increased care and knowledge is necessary in all further practical steps involved.
+
+
+\subsection{Power measuring integrated circuits} \label{ss:pmic}
+
+Although it is possible to construct a circuit out of discrete components that would measure \cite{webster2003electrical} the required physical quantities, and such a solution would probably be the cheapest solution out there, it would be highly impractical due to multiple reasons.
+
+The most importantly, the obtained accuracy of the measurements would be dependent on the implementation and used components. It is safe to assume, that without multiple design iterations, the accuracy may be too low to be used in practice.
+
+Another point is that, there is no definitive guide, ready to follow, about how to design such circuit. The reason of this is the vast amount of components available on the market and a lot of design considerations to take into account, depending on the requirements.
+
+A special purpose \glspl{ic} are being developed for the exact purpose of measuring the real, apparent and reactive power, the power factor, and in most cases, gathering some other relevant information.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1\linewidth,angle=0]{measurement_IC_diag}
+\caption{The simplified block diagram for a power measurement \gls{ic}}\label{f:meas_IC_diag}
+\end{figure}
+
+From the block diagram \ref{f:meas_IC_diag}, it can be seen that the power measuring \gls{ic} is just a specialised microcontroller. It takes the data from the sensing circuitry, which in case of voltage can be measured \textit{directly}, provided that the galvanic isolation is included, for the sake of safety. The current however, must be measured \textit{indirectly}. There are three common ways \cite{srinivasan2015composite} of doing so:
+
 \begin{enumerate}
-\item Given a differential equation will a solution exist? 
-\item If a differential equation does have a solution how many solutions are there?
-\item If a differential equation does have a solution can we find it?
+\item \textbf{shunt resistor} - a resistor with a very small but precise value, that causes a voltage drop with a current passing through it due to the Ohm's law, regardless of frequency. The actual voltage drop is so small, that it can be assumed insignificant, but measurable. However, the voltage drop is still present and may cause some issues, if not taken into account. The advantage is really low price. External galvanic isolation must be provided.
+\item \textbf{current transformer} - a current passing wire inside a current sensing coil. Since it is a magnetic induction based transformer, the galvanic isolation is naturally present. The disadvantage is, that the transformer has a cut-off frequency, below which it's effect diminishes rapidly. External magnetic fields can cause problems too. Suitable for measuring current of a fixed (or non-decreasing) frequency.
+\item \textbf{Hall-effect sensor} - a sensor measuring absolute electromagnetic field in a conductor. In contrast to the current transformer, this sensor is able to measure low frequency currents, down to \gls{dc}, which is a feat that the shunt resistor possesses too. Can be placed anywhere near the current path and doesn't require physical connection, thus providing galvanic isolation too. The price increases with operating currents range and precision. Prone to be disturbed by external magnetic fields, too.
 \end{enumerate}
 
-The \textbf{order} or the differential equation is the highest derivative contained within it. \textbf{Degree} is the exponent on that highest derivative.
-
-There are multiple ways to solve differential equations. From the numerical ones, notable are Euler's method and Runge-Kutta (RK4). Some other are described briefly in the following sections.
-
-Differential equations fall to two groups - \textit{ordinary differential equations} (PDE) and \textit{partial differential equations}. Our study won't go into further detail about PDE and will stay focused mainly on ODE.
+Using dedicated power measuring IC has another advantage apart from being more accurate. In fact, the part \gls{datasheet} can be consulted and if all application notes and advices are abided, the specified accuracy can be guaranteed.
 
 
-\subsection{Direction Field}
-Understanding \textbf{direction fields} (or \textbf{slope fields)} and what they tell us about a differential equation and its solution is important and can be introduced without any knowledge of how to solve a differential equation and so can be done before the getting to actually solving them. 
 
+\section{Embedded system}
+An embedded \gls{system} is some combination of \gls{computer} \gls{hw} and \gls{sw}, either fixed in capability or programmable, that is specifically designed for a particular function \cite{ganssle2008embedded}. Industrial machines, automobiles, medical equipment, cameras, household appliances, airplanes, vending machines and toys (as well as the more obvious cellular phone and \gls{pda}) are among the myriad possible hosts of an embedded \gls{system}. Embedded \glspl{system} that are programmable are provided with programming \glspl{interface}, and embedded \glspl{system} programming is a specialized occupation.
 
-The direction fields are important because they can provide a \textit{sketch of solution}, if exist, and a \textit{long term behavior} - most of the time we are interested in general picture about what is happening, as the time passes.
+\subsection{Processing units}
+The term embedded \gls{system} is quite broad, so there is no surprise that the spectrum of used processing units is also wide. Since the general purpose microprocessors require external components, namely memories and \glspl{peripheral}, they tend to consume extra power and a board space. Since the design limitations of an embedded \glspl{system} are most of the time low physical size, low power consumption and/or long uptime and ruggedness (more components mean more parts could fail), microprocessors are seldom used. However, most of the commonly used architectures and word lengths are covered. Due to aforementioned reasons, microcontrollers are favored over microprocessors. 
 
-Example direction field, embedded in phase portrait is shown in \cref{f:vdp_m}.
+\subsection{ESP8266 Wi-Fi module} \label{s:esp8266}
+The ESP8266 Wi-Fi module is a self contained \gls{soc} with integrated \gls{tcpip} protocol stack that can give any microcontroller access to your Wi-Fi network. The ESP8266 is capable of either hosting an application or offloading all Wi-Fi networking functions from another application processor. The ESP8266 module is an extremely cost effective solution, with a huge code-base and community, making it a preferable option for many modern projects, mainly the ones that follow the \gls{iot} trend.
 
-\subsection{Laplace Transform}
-The \textbf{Laplace transform} is an integral transform perhaps second only to the Fourier transform in its utility in solving physical problems. The Laplace transform \eqref{eq:lpl} is particularly useful in solving linear ordinary differential equations such as those arising in the analysis of electronic circuits. The Laplace transform $\mathcal{L}$
-\begin{equation}
-\label{eq:lpl} 
-\mathcal{L}[f(t)](s)=\int{0}{\infty} f(t)e^{-st}dt
-\end{equation}
-where $f(t)$ is defined for $t\le 0$ - this is it's most common form and is called \textit{unilateral}.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=.4\linewidth,angle=0]{esp-12e}
+\caption{The certified ESP-12E module exposing all \glspl{gpio}}\label{f:esp-12e}
+\end{figure}
 
-Most important properties of Laplace transform is that differentiation and integration become multiplication and division. The transform turns integral equations and differential equations to polynomial equations, which are much easier to solve \cite{schiff2013laplace}. Once solved, use of the inverse Laplace transform reverts to the time domain.
-
-
-\section{Periodic Orbits}
-A periodic orbit corresponds to a special type of solution for a dynamical system, namely one which repeats itself in time. A dynamical system exhibiting a stable periodic orbit is often called an \textit{oscillator}. 
-
-\subsection{Limit Cycle}
-A \textbf{limit cycle} is an isolated closed trajectory. \textit{Isolated} means that neighboring trajectories are not closed - they spiral either towards or away from the limit cycle. The particle on the limit cycle, appears after one period on the exact same spot. Limit cycle appears on on a plane, opposed to a periodic orbit, that happens to be a vector.
-
-%\begin{figure}[ht!]
-%	\centering
-%	\includegraphics[width=.6\linewidth]{lcycle_stable}
-%	\caption{Stable limit cycle. Trajectories spiral towards it.}
-%	\label{f:lc_st}
-%\end{figure}
-
-If all neighboring trajectories approach the limit cycle, we say the limit cycle is \textbf{stable} or \textit{attracting}, as shown on \cref{f:lc_st}. Otherwise the limit cycle is \textbf{unstable}, or in exceptional cases, \textbf{half-stable}. Stable limit cycles are very important scientifically as they model systems that exhibit self-sustained oscillations. In other words, these systems oscillate even in the absence of external periodic forcing. 
-
-%\begin{figure}[ht!]
-%	\centering
-%	\includegraphics[width=.55\linewidth]{lcycle_unstable}
-%	\caption{Unstable limit cycle. Trajectories spiral away from it.}
-%	\label{f:lc_unst}
-%\end{figure}
-
-Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic ring of a pace maker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillation of some preferred period, waveform, and amplitude. Oscillations are important part of electronics \cite{oscillations}, too.
-
-If the system is perturbed slightly, it always returns to the standard cycle. Limit cycles are inherently nonlinear phenomena; they cant occur in linear systems \cite{strogatz2008nonlinear}.
-
-%\begin{figure}[ht!]
-%	\centering
-%	\includegraphics[width=.5\linewidth]{lcycle_hstable}
-%	\caption{Half-stable (or semi-stable) limit cycle. Attract trajectories from one side and repel them from other side.}
-%	\label{f:lc_hst}
-%\end{figure}
-
-\subsection{Damping}
-Mentioning damping is important mainly because, in a real world, oscillations eventually stop, due to Newton's law of Thermodynamics (the frictional force). In electronics, there is no ideal oscillator, too - small amount of energy is lost every cycle, due to electric resistance.
-
-Generally, the damping is linear either linear or nonlinear. As a rule of thumb, the linear one is easily modeled mathematically, obeying known rules, while the nonlinear one is not \cite{institute1989estimation}. Nonlinear damping is advantageous in multiple cases and the research is still ongoing about this topic.
-
-There are four exclusive states, that damping in a system can be in:
-\begin{enumerate}
-\item Undamped
-\item Underdumped
-\item Critically-dumped
-\item Overdumped
-\end{enumerate}
-
-\section{Advanced Studies}
-
-\subsection{Li\'{e}nard Equation}
-A nonlinear second-order ordinary differential equation
-\begin{equation}
-\label{eq:lnrd}
-y''+f(x)x'+x=0
-\end{equation}
-
-This equation describes the dynamics of a system with one degree of freedom in the presence of a linear restoring force and nonlinear damping. The function $f$ has properties
-\begin{align*}
-f(x)&<0\quad for\,small\,|x| \\
-f(x)&>0\quad for\,large\,|x|
-\end{align*}
-that is, if for small amplitudes the system absorbs energy and for large amplitudes dissipation occurs, then in the system one can expect self-exciting oscillations.
-
-\textbf{Li\'{e}nard equation} was intensely studied as it can be used to model oscillating circuits. Under certain additional assumptions Li\'{e}nard's theorem guarantees the uniqueness and existence of a limit cycle for such a system.
-
-\subsection{Van der Pol Equation}
-One of the most well-known oscillator model in dynamics is \textbf{Van der Pol oscillator}, which is a special case of Li\'{e}nard's equation \eqref{eq:lnrd} and is described by a differential equation
-\begin{equation}
-\label{eq:vdp}
-y''-\mu\left(1-y^2\right)y'+y=0
-\end{equation}
-where $y$ is the dynamical variable and $\mu>0$ is a parameter. If $\mu=0$, then the equation reduces to the equation of simple harmonic motion
-$$y''+y=0$$
-The $\mu$ parameter determines the shape of the limit cycle. As it approaches 0, it gets the shape of a circle. On the other hand, increasing the paramter, involves sharpening of the curves.
-
-The Van der Pol equation \eqref{eq:vdp} arises in the study of circuits containing vacuum tubes (triode) and is derived from earlier, Rayleigh equation \cite{nahin2001science}, known also as Rayleigh-Plesset equation - an ordinary differential equation explaining the dynamics of a spherical bubble in an infinite body of liquid.
-
-Van der Pol oscillator is \textbf{self-sustainable}, \textbf{relaxation} oscillator. Self-sustainability in this context means, that the energy is fed into small oscillations and removed from large oscillations. Relaxation means, that the energy is gradually accumulating over time and then quickly released (relaxed). In electronics jargon, the relaxation oscillator is also called a \textit{free-running} oscillator. As already explained, it does not require neither one (monostable), nor two (bistable) inputs for transitioning between states, it "runs" by itself, thus free-running.
-
-\subsection{Periodicity in Van der Pol's Oscillator}
-Li\'{e}nard's theorem can be used to prove that the system described by  Van der Pol equation \eqref{eq:vdp} has a limit cycle \cite{sternberg2014dynamical}. If we want to visualize it, the one-dimensional form of equation must be first \textit{transformed} to the two-dimensional form. Applying the Li\'{e}nard transformation $$y=x-\frac{x^3}{3}-\frac{\dot x}{\mu}$$ where dot indicates the time derivative, the system can be written in it's two-dimensional form \cite{kaplan2012understanding}:
-\begin{align*}
-\dot x &= \mu \left(x-\frac13 x^3 -y\right) \\
-\dot y &= \frac{1}{\mu} x
-\end{align*}
-
-However, this form is not well-known. Far common form uses the transformation $y=\dot x$, that yields
-\begin{align*}
-\dot x &= y \\
-\dot y &= \mu\left(1-x^2\right)y-x
-\end{align*}
-which can be plotted onto direction field, as shown on \cref{f:vdp_m}. It is possible to see the stable limit cycle as well as trajectories from both sides attracted towards it.
-
-The Van der Pol oscillator can be forced too, however, this work does not aim to investigate further in this direction.
-
-%\begin{figure}[ht!]
-%	\centering
-%	\includegraphics[width=.85\linewidth]{vdp_maxima}
-%	\caption{Phase portrait of the unforced Van der Pol oscillator, showing a limit cycle and the direction field Parameter $\mu=1$. The wxMaxima computing software was used for this purpose. }
-%	\label{f:vdp_m}
-%\end{figure}
-
-\subsection{Josephson Junctions}
-Another phenomenon regarding nonlinear dynamics applied in the field of electrical engineering is known as Josephson Junction.
-
-\textbf{Josephson junctions} are superconducting devices that are capable of generating voltage oscillations of extraordinary high frequency, typically 10\textsuperscript{10} - 10\textsuperscript{11} cycles per second \cite{van1981principles}. They consist of two superconducting layers, separated by a very thin insulator that weakly couples them, as shown on \cref{f:jjunc}.
-
-%\begin{figure}[ht!]
-%	\centering
-%	\includegraphics[width=.4\linewidth]{jjunc}
-%	\caption{The physical structure of a Josephson Junction. Shown for ilustration purposes.}
-%	\label{f:jjunc}
-%\end{figure}
-
-Although quantum mechanics is required to explain the origin of the Josephson effect, we can nevertheless dive into dynamics of Josephson junctions in classical terms. They have been particularly useful for \textit{experimental} studies of nonlinear dynamics, because the equation governing a single junction resembles the one of a pendulum \cite{strogatz1994nonlinear}.
-
-Josephson junctions are used to detect extremely low electric potentials and are used for instance, to detect far-infrared radiation from distant galaxies. They are also formed to arrays, because there is a great potential seen in this configuration, however, all the effects are yet to be fully understood.
-
-\subsection{Applications in Electrical Circuits}
-This is the main section of our work. We will investigate, what is the behavior of electrical components in circuits with respect to time and model them with differential equations.
-
-\textbf{Resistor} is a linear component. It is described by an \textbf{Ohm's law}, which states, that the voltage $V$ across it is proportional to the current $I$ passing through it's resistance $R$.
-$$V=IR$$
-
-\textbf{Inductor} is one nonlinear component. It produces a voltage drop, that is proportional to the \textit{rate of change} of the current through it, as described by \textbf{Faraday's Law}
-$$V(t)=L\,\frac{dI}{dt}$$
-
-\textbf{Capacitor} is another nonlinear component. Voltage drop across it, is on the other hand proportional to the charge stored in it. This behavior is derived from  \textbf{Coulumb's law}
-$$V(t)=\frac{1}{C}\int i\,dt$$
-
-\textbf{Kirchhoff Current Law} (KCL) states, that the algebraic sum of the currents flowing into any junction of an electric circuit must be zero.
-
-\textbf{Kirchhoff Voltage Law} (KVL) states, that the algebraic sum of the voltage drops around any closed loop in an electric circuit must be zero.
-
-These laws allow us to model, what is happening inside the circuit with respect to time \cite{lynch2013dynamical}.
-
-\section{First-order Electrical Circuits}
-First order circuits generally contain one energy-storing (nonlinear) element.
-
-\subsection{RL Circuit}
-The RL circuit shown on \cref{f:rl} has a resistor and an inductor connected in series. A \textit{constant} voltage $V$ is applied when the switch is closed.
-
-%\begin{figure}[ht!]
-%	\centering
-%	\includegraphics[width=.75\linewidth]{rl}
-%	\caption{RL circuit diagram.}
-%	\label{f:rl}
-%\end{figure}
-
-Applying the KVL, we obtain the algebraic sums of all the voltage drops as an ODE with respect to time
-$$Ri+L\,\frac{di}{dt}=V(t)$$
-solving which we obtain 
-$$i=\frac{V}{R}\left(1-e^{-(R/L)t}\right)$$
-The solving process is quite lenghty and is not a point of this work. For more details see \cite{bird2014electrical}.
-
-If the applied voltage is not constant, but rather \textit{variable}, in the form of $V(t)=A\,cos(\omega(t) + \phi)$ or $V(t)=A\,sin(\omega(t) + \phi)$, then things get complex.
-
-\subsection{RC Circuits}
-The RC circuit shown on \cref{f:rc} has a resistor and unexpectedly, a capacitor connected in series. Again, A \textit{constant} voltage $V$ is applied when the switch is closed.
-
-%\begin{figure}[ht!]
-%	\centering
-%	\includegraphics[width=.75\linewidth]{rc}
-%	\caption{RC circuit diagram.}
-%	\label{f:rc}
-%\end{figure}
-
-Kirchhoff's voltage law says the total voltages must be zero. So applying this law to a series RC circuit results in the equation
-$$Ri+\frac{1}{C}\int i\,dt=V(t)$$
-Again, to solve it, we can turn it into a differential equation, by differentiating throughout with respect to $t$
-$$R\,\frac{di}{dt}+\frac{i}{C}=0$$
-solving which we obtain
-$$i=\frac{V}{R}\,e^{-t/RC}$$
+This module has a powerful enough on-board processing and storage capability that allows it to be integrated with the sensors and other application specific devices through its \glspl{gpio} with minimal development up-front and minimal loading during runtime. Its high degree of on-chip integration allows for minimal external circuitry, including the front-end module, is designed to occupy minimal \gls{pcb} area. 
 
 
 
 
+\section{Hardware components breakdown} \label{ss:hw}
+The device under test will be referred to as \textbf{appliance} and the produced device will be referred to as \textbf{client node} (displayed as a simplified schematic in figure \ref{f:schem_block}) is already integrated as an ESP-8266 module, described in more detail in the chapter \ref{s:esp8266}. The module contains the \gls{tcpip} stack, micro-controller (application processor) running the user program, \gls{wlan} and light indication, all in one piece, so this greatly simplifies the design process and allows for more focus on the actual measurement circuitry. The ESP-12E has been chosen as an actual module, because of the available certification\cite{online:2ADUIESP-12}, which allows it to be introduced to the market later. It was already shown in the figure \ref{f:esp-12e}. The \gls{pwm} is present there too, so sound indication requires just a sound emitting device.
 
-\section{Second-order Electrical Circuits}
-Second order circuits contain both nonlinear elements. A RLC circuit consist of the resistor, the inductor and the capacitor and is shown in \cref{f:rlc}.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=.8\linewidth,angle=0]{client_node_diag}
+\caption{The proposed block diagram of a \textit{client node}}\label{f:client_node}
+\end{figure}
 
-%\begin{figure}[ht!]
-%	\centering
-%	\includegraphics[width=.75\linewidth]{rlc}
-%	\caption{RLC circuit diagram.}
-%	\label{f:rlc}
-%\end{figure}
+Talking about the measurement circuitry \ref{f:schem_block}, the viable candidate is MAX78615 \cite{online:MAX78615} with the companion \gls{ic} MAX78700 \cite{online:MAX78700}. The couple should be used, because it provides multiple ways of same voltage level communication with the processor, galvanic isolation via the pulse transformer for improved circuitry protection, great precision, accuracy and utility. The shunt resistor is utilised as a way of obtaining measurements, described in the sub-chapter \ref{ss:pmic}.
 
-In order to follow further, we must define new term, that will be used. \textbf{Electro-motive force} (EMF) is the force, that moves electrons from lower potential to the higher one, as opposed to so far mentioned electric potential, that can do it only in reverse order. The source of EMF can be for instance chemical reaction in cell battery, that induces the \textit{separation of charge}.
+For the protection against fire a standard glass fuse or a resettable \gls{ptc} fuse\cite{wright2004electric} should be used. Because of the variable nature of most used devices, it is hard to calculate the current consumption of the circuit. It can be measured after the first iteration is manufactured. Thus, the easily replaceable standard glass fuse has been chosen because of its versatility. The circuit protection against high voltage should be solved with an isolated DC-to-DC converter\cite{carr1996linear} or with a linear transformer coupled with a linear voltage regulator\cite{2008linear}. Since the former one is either expensive or hard to design, and this work does not want to focus on more complexities, the latter option has been chosen.
 
-The EMF is mentioned, because nonlinear elements (capacitor and inductor) store and release energy, as well as cells do. Thus they have the ability to move electrons from one potential to another and so they have to be described in terms of electro-magnetic force, instead of just electric potential.
+Choosing the voltage level for the digital electronics (the output voltage of the linear regulator) is straightforward. Since the ESP-12E works on nominal 3.3V, this is the level that has been chosen. Having \glspl{ic} using the same voltage level removes the need to level-shift the communication between them, thus increasing the simplicity of the design.
 
-If the driving force in RLC circuit is \textbf{constant}, the current equation for a circuit is
-$$L\,\frac{di}{dt} + Ri + \frac{1}{C}\int i\,dt = E$$
-Differentiating we obtain
-$$L\,\frac{d^2i}{dt^2} + R\,\frac{di}{dt} + \frac1C\,i = 0$$
-which is the second order linear differential equation (homogenous).
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1\linewidth,angle=0]{schematic_block}
+\caption{Greatly simplified schematic of a client node sketching the inner working}\label{f:schem_block}
+\end{figure}
 
-The circuit itself is a damped oscillator. Writing the equation in its auxiliary form and finding its roots, we could obtain a formula for it's \textit{damping factor}, however, it is a topic far off the boundaries of this work.
+Talking about the measurement circuitry, the candidate is MAX78615 \cite{online:MAX78615}, working on nominal 3.3V level, along with the companion \gls{ic} MAX78700 \cite{online:MAX78700}. The couple has been chosen, because it provides multiple ways of communication with the processor (buses/serial interfaces), galvanic isolation via a pulse transformer for improved circuitry protection, great precision, accuracy and utility. The resistor network, including the shunt resistor is utilised as a way of obtaining measurements. The shunt resistor is also briefly described in the sub-chapter \ref{ss:pmic}.
 
-If the non-constant (variable) driving force, the things get even more complicated. For instance, Laplace transform can be used to solve the equations.
+The remaining part of the client node's block diagram \ref{f:client_node} not yet mentioned is switching. Either a mechanical relay or a semiconductor device, such as a thyristor or a \gls{ssr} isolated by an opto-coupler\cite{trzynadlowski2015introduction} will do. Mechanical relays tend to be larger and produce sound noise, have slow response time, but have inbuilt separate isolation and are capable of switching higher currents without additional thermal issues than their semiconductor counterparts\cite{blume2008electric}. The disadvantages of the mechanical relay are not relevant here, thus it has been chosen.
+
+\begin{figure}[]
+\centering
+\includegraphics[width=.8\linewidth,angle=0]{pcb_top}
+\caption{The top layer of the designed \gls{pcb} (client node), exposing mainy \gls{tht} components}\label{f:pcb_top}
+\end{figure}
+\begin{figure}[]
+\centering
+\includegraphics[width=.8\linewidth,angle=0]{pcb_bottom}
+\caption{The bottom layer of the designed \gls{pcb} (client node), exposing mainly \gls{smt} components}\label{f:pcb_bottom}
+\end{figure}
+
 
 \section{Conclusion}
-We have dived into multiple mathematical theories and science fields that has some connection to dynamical systems and electrical circuits. The topics mentioned are only scratch on the surface. Every single one could be written in separate paper or even a book. In fact, thousands of book have been written in mentioned topics and there are probably thousands more to come.
 
-There are multiple important topics, namely \textit{bifurcations} and \textit{chaos}, but we decided to skip them, because of the vast amount of information, they represent and also due to lack of direct connection between them and electical circuits.
+The manufactured client node has been inserted into the enclosure\cite{online:enclosure}, portrayed in the figure \ref{f:enclosure}, containing an European mains socket (female) on one side and an European mains plug (male) on the other side, forming a man-in-the-middle adaptor, that can be non-invasively put between wall socket and an appliance. The result can be observed in figure \ref{f:project_inside}.
 
-The main goal was to get some general idea about the connections between the terms and get some picture of the problematic. Although probably in a chaotic way, that goal was met and we tried to be as concise as possible along the way.
+The client node is capable of measuring \textit{RMS voltage} and \textit{RMS current}. By multiplying them together, the \textit{apparent power} can be obtained, as discussed back in the sub-chapter \ref{ss:power_ac}. The intentions are to fix the design, enabling full range of physical quantities, discussed throughout the chapter \ref{s:el_power}, to be measured. The plan is to use multiple client nodes to measure and track power consumption of the inactive, but plugged-in \gls{smps} chargers, in a form of a collaborative global experiment.
+
+\begin{figure}[]
+\centering
+\includegraphics[width=.8\linewidth,angle=0]{enclosure}
+\caption{The 3D visualisation of the enclosure, displaying both the plug and the socket}\label{f:enclosure}
+\end{figure}
+\begin{figure}[]
+\centering
+\includegraphics[width=.8\linewidth,angle=0]{project_inside}
+\caption{The view into the client node's enclosure, before the final assembly, exposing top side of the board containing linear transformer T1 (green), mains connectors J1 and J2 (blue), a fuse holder for F1 (yellow-ish), a relay K1 (white) and an ESP-12E module}\label{f:project_inside}
+\end{figure}
 
 
 % if have a single appendix:
@@ -360,15 +319,19 @@ The main goal was to get some general idea about the connections between the ter
 %\section{}
 %Appendix two text goes here.
 
-
+\newpage
 % use section* for acknowledgement
 \section*{Acknowledgment}
-The authors would like to thank professor Carlos Par\'{e}s for having patience with them. Another thank would go to the well-written book \emph{Nonlinear Dynamics and Chaos, S.H. Strogatz, 2008} for introduction to and for sparking curiosity in the field of Dynamical Systems.
+I would like to express my sincere thanks to my supervisor Ing. Tibor Vince,
+PhD., for his constant and constructive guidance throughout all the struggles that
+have occurred during this work. And to all other who gave a helping hand, I say
+thank you very much, too.
+
 
 % Can use something like this to put references on a page
 % by themselves when using endfloat and the captionsoff option.
 %\ifCLASSOPTIONcaptionsoff
-  \newpage
+%  \newpage
 %\fi
 
 \printbibliography
