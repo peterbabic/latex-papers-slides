@@ -14,7 +14,7 @@
   \setbeamertemplate{caption}[numbered]
   % Numbered bibiolgraphy items
   \setbeamertemplate{bibliography item}{\insertbiblabel}
-} 
+}
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -68,7 +68,7 @@
 
 	\column{.35\textwidth}
 		\begin{figure}[b]
-		\includegraphics{lofti.jpg}
+		\includegraphics{lofti}
 		\caption{Lofti A. Zadeh}
 		\end{figure}
 	\end{columns}
@@ -79,15 +79,15 @@
 	\begin{exampleblock}{Example}
 	Carmen is 18 years old. Is she old?
 	\end{exampleblock}
-	
+
 	\begin{itemize}
 		\setlength{\itemindent}{2cm}
 		\item[Crisp\footnote{In this context referred also as a \emph{Boolean} or \emph{bivalent} logic}] \textbf{true}/\textbf{false}
 		\item[Fuzzy]  \textbf{true}, \textbf{false} or the \textbf{degree} of \textit{oldness}
-	\end{itemize}			
-	
+	\end{itemize}
+
 	\begin{figure}
-	\includegraphics[width=.5\textwidth]{fuzzy-crisp.jpg}
+	\includegraphics[width=.5\textwidth]{fuzzy-crisp}
 	\caption{The classical set theory is a subset of the theory of fuzzy sets}
 	\end{figure}
 \end{frame}
@@ -95,19 +95,19 @@
 \begin{frame}{Crisp Set}
 	Theory of Sets (formerly Classes) was conceptualized by George Cantor in 1870's.
 	\begin{figure}
-	\includegraphics[width=.75\textwidth]{crisp-set.jpg}
+	\includegraphics[width=.75\textwidth]{crisp-set}
 	\caption{Crisp set illustration. The element either is fully member of a set or is not a member at all.}
 	\end{figure}
 \end{frame}
 
 \begin{frame}{Sorites Paradox}
 	When does a heap of grains stops being heap, if we are removing one grain at a time?
-	
+
 	\begin{figure}
-	\includegraphics[width=.75\textwidth]{sorites-gradient.jpg}
+	\includegraphics[width=.75\textwidth]{sorites-gradient}
 	\caption{At what point exactly does blue becomes red? Sorites paradox \cite{podosky1985vagueness}.}
 	\end{figure}
-	
+
 	$$Bald(0)$$
 	$$Bald(n)\rightarrow Bald(n+1)$$
 	$$\therefore Bald(10000)$$
@@ -129,7 +129,7 @@
 \begin{frame}{Fuzzy Set Interpretation}
 	How do we represent \textit{numerical} value in a fuzzy set? With the use of \textit{linguistic variables} \cite{lieb1993linguistic}, \textbf{not} probabilities.
 	\begin{figure}
-		\includegraphics[width=.75\textwidth]{fuzzy-set-degrees.jpg}
+		\includegraphics[width=.75\textwidth]{fuzzy-set-degrees}
 		\caption{Example interpretation of fuzzy sets. At the given temperature point, we can tell that the measured medium is "not hot", "slightly warm" and "almost cold". It does not mean that the chance the water is cold is 75\%.
 		\label{fig:fuzzy-set}}
 	\end{figure}
@@ -156,9 +156,9 @@
 	\item[Intersection] $\mu_{A\cap B}(u)=min\{\mu_A(u),\mu_B(u)\}$
 	\item[Union] $\mu_{A\cup B}(u)=max\{\mu_A(u),\mu_B(u)\}$
 	\end{itemize}
-	
+
 	\begin{figure}
-	\includegraphics[width=.95\textwidth]{fuzzy-set-op.jpg}
+	\includegraphics[width=.95\textwidth]{fuzzy-set-op}
 	\caption{The complement $\mathbf{\mu_{\bar A}}$, the intersection $\mathbf{\mu_{A\cap B}}$ and the union $\mathbf{\mu_{A\cup B}}$ (green).}
 	\end{figure}
 \end{frame}
@@ -168,43 +168,43 @@
 		\caption{The truth tables for \textbf{AND}, \textbf{OR} and \textbf{NOT} operations}
 		\begin{tabular}{|c|c|c|}
 		\hline
-		\rule[-1ex]{0pt}{2.5ex} \textbf{A} & \textbf{B} & \textbf{min(A,B)} \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 0 & 0 & 0 \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 0 & 1 & 0 \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 1 & 0 & 0 \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 1 & 1 & 1 \\ 
-		\hline 
-		\end{tabular} 
+		\rule[-1ex]{0pt}{2.5ex} \textbf{A} & \textbf{B} & \textbf{min(A,B)} \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 0 & 0 & 0 \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 0 & 1 & 0 \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 1 & 0 & 0 \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 1 & 1 & 1 \\
+		\hline
+		\end{tabular}
 		\hskip .5cm
 		\begin{tabular}{|c|c|c|}
 		\hline
-		\rule[-1ex]{0pt}{2.5ex} \textbf{A} & \textbf{B} & \textbf{max(A,B)} \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 0 & 0 & 0 \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 0 & 1 & 1 \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 1 & 0 & 1 \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 1 & 1 & 1 \\ 
-		\hline 
-		\end{tabular} 
+		\rule[-1ex]{0pt}{2.5ex} \textbf{A} & \textbf{B} & \textbf{max(A,B)} \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 0 & 0 & 0 \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 0 & 1 & 1 \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 1 & 0 & 1 \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 1 & 1 & 1 \\
+		\hline
+		\end{tabular}
 		\hskip .5cm
 		\begin{tabular}{|c|c|}
 		\hline
-		\rule[-1ex]{0pt}{2.5ex} \textbf{A} & \textbf{1-A} \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 1 & 0 \\ 
-		\hline 
-		\rule[-1ex]{0pt}{2.5ex} 0 & 1 \\ 
-		\hline 
-		\end{tabular} 
+		\rule[-1ex]{0pt}{2.5ex} \textbf{A} & \textbf{1-A} \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 1 & 0 \\
+		\hline
+		\rule[-1ex]{0pt}{2.5ex} 0 & 1 \\
+		\hline
+		\end{tabular}
 	\end{table}
-	
+
 	\vskip .5cm
 	It is no coincidence, that these truth tables for binary fuzzy sets are identical to their Boolean counterparts\footnote{DeMorgan's law, associativity, comutativity and distributivity also apply.}.
 \end{frame}
@@ -212,7 +212,7 @@
 \begin{frame}{Triangular Norm (T-norm)}
 	A T-norm is a \textbf{continuous} function $T:[0,1]\times [0,1]\rightarrow [0,1]$, satisfying these axioms:
 	\begin{itemize}
-	
+
 	\vskip .5cm
 	\setlength{\itemindent}{3cm}
 	\item[Neutrality\footnote{Also referred to as a \emph{boundary condition}.}] $T(a, 1) = a$
@@ -221,7 +221,7 @@
 	\item[Associativity] $T(a, T(b, c)) = T(T(a, b), c)$
 %	\item[Subidempotency] $T(a,a)\le a$
 	\end{itemize}
-	
+
 	\vskip .5cm
 	T-norm is used to customize the fuzzy \textbf{intersection} (conjunction).
 	The fuzzy \textbf{union} (disjunction) uses the S-norm (or T-conorm).
@@ -230,7 +230,7 @@
 \begin{frame}{The Most Common T-norms}
 	$$\mathsf{T_{min}}(a,b)=min\{a,b\}$$
 	\begin{figure}
-	\includegraphics[width=.95\textwidth]{min-tnorm.png}	
+	\includegraphics[width=.95\textwidth]{min-tnorm}
 	\caption{\textbf{Minimum} (G{\"o}del) T-norm is the most common one}
 	\end{figure}
 \end{frame}
@@ -238,7 +238,7 @@
 \begin{frame}{The Most Common T-norms}
 	$$\mathsf{T_{prod}}(a,b)=a \cdot b$$
 	\begin{figure}
-	\includegraphics[width=.95\textwidth]{product-tnorm.png}	
+	\includegraphics[width=.95\textwidth]{product-tnorm}
 	\caption{\textbf{product} T-norm}
 	\end{figure}
 \end{frame}
@@ -246,7 +246,7 @@
 \begin{frame}{The Most Common T-norms}
 	$$\mathsf{T_{Luk}}(a,b)=max\{0,\:a+b-1\}$$
 	\begin{figure}
-	\includegraphics[width=.95\textwidth]{luk-tnorm.png}		
+	\includegraphics[width=.95\textwidth]{luk-tnorm}
 	\caption{\textbf{{\L}ukasiewics} T-norm}
 	\end{figure}
 \end{frame}
@@ -266,14 +266,14 @@
 
 	% lughofer2011evolving, mamdani inference
 	\begin{figure}
-	\includegraphics[width=.75\textwidth]{fuzzy-control-block.jpg}
+	\includegraphics[width=.75\textwidth]{fuzzy-control-block}
 	\caption{Block diagram of a fuzzy control}
 	\end{figure}
 \end{frame}
 
 \begin{frame}{Fuzzy Inference Engine}
 	\begin{figure}
-	\includegraphics[width=.6\textwidth]{inference.png}
+	\includegraphics[width=.6\textwidth]{inference}
 	\caption{Process of a fuzzy control. The most used method for defuzzification is \textit{center of gravity} (centroid).}
 	\end{figure}
 \end{frame}
@@ -287,7 +287,7 @@
 	\item Handwriting recognition, elevator systems, self-balancing robots
 %	\item Simple, low cost $\rightarrow$ many more \dots
 	\end{itemize}
-	
+
 	\vskip .5cm
 	The fuzzy control systems are commonly used \cite{ross2009fuzzy} where there are not enough resources for highly advanced systems like \textbf{PID\footnote{Proportional-integral-derivative} controller}, \textbf{Artificial neural network} or \textbf{Genetic algorithm} \cite{rajasekaran2003neural}.
 \end{frame}
@@ -323,27 +323,27 @@
 
 \begin{frame}[allowframebreaks]{MATLAB Fuzzy Toolbox}
 	\begin{figure}
-	\includegraphics[width=.75\textwidth]{sw-1.png}
+	\includegraphics[width=.75\textwidth]{sw-1}
 %	\caption{•}
 	\end{figure}
 	\begin{figure}
-	\includegraphics[width=.75\textwidth]{sw-2.png}
+	\includegraphics[width=.75\textwidth]{sw-2}
 %	\caption{•}
 	\end{figure}
 	\begin{figure}
-	\includegraphics[width=.75\textwidth]{sw-3.png}
+	\includegraphics[width=.75\textwidth]{sw-3}
 %	\caption{•}
 	\end{figure}
 	\begin{figure}
-	\includegraphics[width=.75\textwidth]{sw-4.png}
+	\includegraphics[width=.75\textwidth]{sw-4}
 %	\caption{•}
 	\end{figure}
 	\begin{figure}
-	\includegraphics[width=.5\textwidth]{sw-5.png}
+	\includegraphics[width=.5\textwidth]{sw-5}
 %	\caption{•}
 	\end{figure}
 	\begin{figure}
-	\includegraphics[width=.75\textwidth]{sw-6.png}
+	\includegraphics[width=.75\textwidth]{sw-6}
 %	\caption{•}
 	\end{figure}
 \end{frame}
@@ -380,22 +380,22 @@
 %	\begin{block}{This is a Block}
 %	This is important information
 %	\end{block}
-%	
+%
 %	\begin{alertblock}{This is an Alert block}
 %	This is an important alert
 %	\end{alertblock}
-%	
+%
 %
 %	\begin{exampleblock}{This is an Example block}
-%	This is an example 
+%	This is an example
 %	\end{exampleblock}
-%	
+%
 %\end{frame}
 
 
 %\begin{itemize}
 %\item Use \texttt{tabular} for Basic Tables! --- See Table~\ref{tab:widgets}, for Example.
-%\item You Can Upload a Figure (JPEG, PNG or PDF) Using the Files Menu. 
+%\item You Can Upload a Figure (JPEG, PNG or PDF) Using the Files Menu.
 %\item to Include It in Your Document, Use the \texttt{includegraphics} Command (See the Comment Below in the Source Code).
 %\end{itemize}
 
