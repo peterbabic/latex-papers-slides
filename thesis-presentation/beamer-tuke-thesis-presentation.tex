@@ -20,6 +20,8 @@
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{csquotes,lmodern,silence}
+
+\usepackage{textpos}
 %\usepackage[style=numeric,backend=biber]{biblatex}
 
 %\WarningFilter{biblatex}{Patching footnotes failed}
@@ -30,31 +32,40 @@
 %\addbibresource{bibliography.bib}
 \graphicspath{{figures/}}
 
-\title[Linux Boards]{Linux boards and their use}
+\title[Linux Boards]{Viacúčelový systém merania elektrického výkonu dodávaný elektrickými zásuvkami}
 \author{Peter Babič}
-\institute{Technical University of Košice, Slovakia \\ Computer Modelling, Masters}
-\date{26.11.2015}
+\institute{Technická Univerzita v Košiciach \\ Počítačové Modelovanie, Ing.}
+\date{24.05.2016}
 
 \begin{document}
 
-\titlepage
+\addtobeamertemplate{frametitle}{}{%
+	\begin{textblock*}{1cm}(.75\textwidth,-1.45cm)
+		\includegraphics[height=1.25cm,width=1.25cm]{logo-tu}
+	\end{textblock*}
+	\begin{textblock*}{1cm}(.90\textwidth,-1.45cm)
+		\includegraphics[height=1.25cm,width=1.25cm]{logo-fei}
+	\end{textblock*}
+}
 
+\section{Úvod}
 
-\section{Introduction}
-
-
-
-
-\section{Epilogue}
-
-\begin{frame}{Epilogue}
-	\centering
-	{\large Thank you}
-
-	\vskip 2cm
-	Peter Babič
-
+\begin{frame}{\phantom{A}}
+	\maketitle
 \end{frame}
+
+
+
+
+
+
+\section{Záver}
+
+\begin{frame}{Otázky?}
+	\centering
+	{\Large Ďakujem}
+\end{frame}
+
 
 
 \end{document}
