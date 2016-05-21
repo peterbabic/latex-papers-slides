@@ -7,8 +7,11 @@
 \usepackage{marvosym}
 \usepackage{textpos}
 \usepackage{graphbox}
+% \usepackage[labelformat=simple]{caption}
 
-\DeclareGraphicsExtensions{.pdf,.png}
+
+% \DeclareGraphicsExtensions{.pdf,.png}
+
 
 %
 % Choose how your presentation looks.
@@ -21,13 +24,16 @@
 	\usecolortheme{wolverine} % or try albatross, beaver, crane, ...
 	\usefonttheme{default}  % or try serif, structurebold, ...
 	\setbeamertemplate{navigation symbols}{}
-%	\setbeamertemplate{caption}[numbered]
-	\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+	\setbeamertemplate{caption}[numbered]
+% 	\setbeamertemplate{caption}{\raggedright\insertcaption\par}[numbered]
 	% Numbered bibiolgraphy items
 %	\setbeamertemplate{bibliography item}{\insertbiblabel}
 	\setbeamertemplate{itemize item}{$\mbox{\Lightning}$}
 }
 
+\addto\captionsenglish{%
+	\renewcommand{\figurename}{Obrázok}
+}
 
 %\usepackage[style=numeric,backend=biber]{biblatex}
 
@@ -84,16 +90,13 @@
 		\item Čo chýba meračom už zavedeným na trhu?
 	\end{itemize}
 
-	% \vskip 1cm
-
+	\def \myGraphicsHeight {4.5cm}
 	\begin{figure}[htp]
 		\centering
-		% \includegraphics[width=.25\linewidth]{arrow-up}\hfill
-		\includegraphics[height=5cm]{analog-power-meter}
+		\includegraphics[height=\myGraphicsHeight]{analog-power-meter}
 		\hspace{1cm}
-		\includegraphics[height=5cm]{digital-plug-meter}
-		% \caption{default}
-		% \label{fig:figure3}
+		\includegraphics[height=\myGraphicsHeight]{digital-plug-meter}
+		\caption{Merač v rozvodovej skrini a zásuvkový merač}
 	\end{figure}
 
 \end{frame}
@@ -115,6 +118,7 @@
 		\includegraphics[align=c,height=\myGraphicsHeight]{logo-wifi}
 		{\Huge +}
 		\includegraphics[align=c,height=\myGraphicsHeight]{cloud-computing}
+		\caption{Recept na diplomovú prácu}
 	\end{figure}
 \end{frame}
 
@@ -130,6 +134,7 @@
 		\includegraphics[height=\myGraphicsHeight]{visualisation}
 		% \hspace{1cm}
 		\includegraphics[height=\myGraphicsHeight]{enclosure}
+		\caption{Vizualizácia plošného spoja a krabičky pred zhotovením}
 	\end{figure}
 \end{frame}
 
