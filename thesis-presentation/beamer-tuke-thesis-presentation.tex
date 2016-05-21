@@ -8,6 +8,8 @@
 \usepackage{textpos}
 \usepackage{graphbox}
 
+\DeclareGraphicsExtensions{.pdf,.png}
+
 %
 % Choose how your presentation looks.
 %
@@ -84,7 +86,8 @@
 	\begin{figure}[htp]
 		\centering
 		% \includegraphics[width=.25\linewidth]{arrow-up}\hfill
-		\includegraphics[height=5cm]{analog-power-meter}\hspace{1cm}
+		\includegraphics[height=5cm]{analog-power-meter}
+		\hspace{1cm}
 		\includegraphics[height=5cm]{digital-plug-meter}
 		% \caption{default}
 		% \label{fig:figure3}
@@ -100,10 +103,10 @@
 \subsection{Návrh}
 \label{sub:Návrh}
 
+\def \myGraphicsHeight {2.25cm}
 \begin{frame}{Návrh riešenia}
 	\begin{figure}[htp]
 		\centering
-		\def \myGraphicsHeight {2.25cm}
 		\includegraphics[align=c,height=\myGraphicsHeight]{digital-plug-meter}
 		{\Huge +}
 		\includegraphics[align=c,height=\myGraphicsHeight]{logo-wifi}
@@ -112,6 +115,20 @@
 	\end{figure}
 \end{frame}
 
+
+
+\subsection{Vizualizácia}
+\label{sub:Vizualizácia}
+
+\def \myGraphicsHeight {.55\paperheight}
+\begin{frame}{Vizualizácia návrhu}
+	\begin{figure}[htp]
+		\centering
+		\includegraphics[height=\myGraphicsHeight]{visualisation}
+		% \hspace{1cm}
+		\includegraphics[height=\myGraphicsHeight]{enclosure}
+	\end{figure}
+\end{frame}
 
 
 \section{Záver}
