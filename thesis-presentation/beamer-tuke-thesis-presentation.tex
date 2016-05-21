@@ -1,4 +1,12 @@
 \documentclass[hyperref={unicode}]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes,lmodern,silence}
+\usepackage{marvosym}
+\usepackage{textpos}
+
 %
 % Choose how your presentation looks.
 %
@@ -14,14 +22,10 @@
 	\setbeamertemplate{caption}{\raggedright\insertcaption\par}
 	% Numbered bibiolgraphy items
 %	\setbeamertemplate{bibliography item}{\insertbiblabel}
+	\setbeamertemplate{itemize item}{$\mbox{\Lightning}$}
 }
 
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\usepackage[T1]{fontenc}
-\usepackage{csquotes,lmodern,silence}
 
-\usepackage{textpos}
 %\usepackage[style=numeric,backend=biber]{biblatex}
 
 %\WarningFilter{biblatex}{Patching footnotes failed}
@@ -32,7 +36,7 @@
 %\addbibresource{bibliography.bib}
 \graphicspath{{figures/}}
 
-\title[Linux Boards]{Viacúčelový systém merania elektrického výkonu dodávaný elektrickými zásuvkami}
+\title[DP prezentácia]{Viacúčelový systém merania elektrického výkonu dodávaný elektrickými zásuvkami}
 \author{Peter Babič}
 \institute{Technická Univerzita v Košiciach \\ Počítačové Modelovanie, Ing.}
 \date{24.05.2016}
@@ -69,7 +73,7 @@
 	\begin{figure}[htp]
 		\centering
 		% \includegraphics[width=.25\linewidth]{arrow-up}\hfill
-		\includegraphics[height=5cm]{analog-power-meter}\hfill
+		\includegraphics[height=5cm]{analog-power-meter}\hspace{1cm}
 		\includegraphics[height=5cm]{digital-plug-meter}
 		% \caption{default}
 		% \label{fig:figure3}
