@@ -147,13 +147,31 @@
 \label{sec:Otázky}
 
 
-\subsection{Vedúci}
+\subsection{Vedúci DP}
 \label{sub:Vedúci}
 
 \begin{frame}{Otázka vedúceho DP}
+	\begin{block}{Znenie}
+		V kapitole 7.2 ste popisovali príklad merania, kde ste na server posielali údaje každých 10s. V akom najkratšom časovom intervale by bolo možné posielať namerané dáta pomocou vami vytvoreného meracieho systému?
+	\end{block}
+
+	\begin{equation*}
+		\frac{100\;\text{zápisov}}{15\;\text{min}} = \frac{100\;\text{zápisov}}{900\;\text{sec}} = \frac{1\;\text{zápis}}{9\;\text{sec}}\;\text{max} \cong \frac{1\;\text{zápis}}{10\;\text{sec}}
+	\end{equation*}
 \end{frame}
 
+\subsection{Odpoveď}
+\label{sub:Odpoveď}
 
+\begin{frame}{Otázka vedúceho DP}
+	\begin{equation*}
+		\frac{1767\,\text{vzoriek/sec}}{400\,\text{vzoriek/interval}} = \frac{400}{1767}\,\text{Hz} = 226.3723\times 10^{-3}\,\text{sec}\cong 224\,\text{ms}
+	\end{equation*}
+
+	\begin{block}{Odpoveď}
+		Použitím vlastného serveru sa odstráni limit 100 zápisov v rozmedzí 15 minút. Pri použití WebSockets spojenia merača so serverom, je možné \textbf{teoretické maximum} odosielania dát hneď ako sú dostupné, teda každých 224 ms.
+	\end{block}
+\end{frame}
 
 
 \subsection{Záver}
