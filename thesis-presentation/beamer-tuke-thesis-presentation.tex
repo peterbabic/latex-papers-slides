@@ -211,11 +211,11 @@
 
 \begin{frame}{Otázka vedúceho DP}
 	\begin{equation*}
-		\frac{1767\,\text{vzoriek/sec}}{400\,\text{vzoriek/interval}} = \frac{400}{1767}\,\text{Hz} = 226.3723\times 10^{-3}\,\text{sec}\cong 224\,\text{ms}
+		\frac{1767\,\text{vzoriek/sec}}{400\,\text{vzoriek/interval}} = \frac{400}{1767}\,\text{Hz} = 226.3723\times 10^{-3}\,\text{sec}\cong 226\,\text{ms}
 	\end{equation*}
 
 	\begin{block}{Odpoveď}
-		Použitím vlastného serveru sa odstráni limit 100 zápisov v rozmedzí 15 minút. Pri použití WebSockets spojenia merača so serverom, je možné \textbf{teoretické maximum} odosielania dát hneď ako sú dostupné, teda každých 224 ms.
+		Použitím vlastného serveru sa odstráni limit 100 zápisov v rozmedzí 15 minút. Pri použití WebSockets spojenia merača so serverom, je možné \textbf{teoretické maximum} odosielania dát hneď ako sú dostupné, teda každých 226 ms.
 	\end{block}
 \end{frame}
 
@@ -224,7 +224,7 @@
 \subsection{Oponent}
 \label{sub:Oponent}
 
-\begin{frame}
+\begin{frame}{Otázky oponenta DP}
 	\begin{block}{Otázka 1}
 		Je výrok na strane 6 ''The power factor is just a specific name for a phase shift between the sinusoids of a current and voltage.'' pravdivý alebo platí výrok v nasledujúcom odstavci ''If $\varphi$ is the phase angle between the current and voltage, then the power factor is equal to the cosine of that angle, cos $\varphi$.''?
 	\end{block}
