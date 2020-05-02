@@ -1,2 +1,3 @@
 # Paper
-[electrical.pdf](https://github.com/peterbabic/LaTeX/blob/master/diff-eqns-electrical/electrical.pdf)
+
+[electrical.pdf](https://git.peterbabic.dev/peter.babic/latex-differential-eqs/src/branch/master/electrical.pdf)
