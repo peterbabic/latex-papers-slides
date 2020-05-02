@@ -1,6 +1,6 @@
 # Presentation
 
-[fuzzy.pdf](https://git.peterbabic.dev/peter.babic/latex-fuzzy-logic/src/branch/master/fuzzy_logic.pdf)
+[PDF](fuzzy_logic.pdf)
 
 # Assignment
 
