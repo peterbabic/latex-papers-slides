@@ -1,19 +1,21 @@
 # Presentation
-[fuzzy.pdf](https://github.com/peterbabic/LaTeX/blob/master/fuzzy-logic/fuzzy_logic.pdf)
+
+[fuzzy.pdf](https://git.peterbabic.dev/peter.babic/latex-fuzzy-logic/src/branch/master/fuzzy_logic.pdf)
 
 # Assignment
+
 The aim is: You choose an application of fuzzy logic and you have to answer
 the following questions:
 
-1) what research groups or R & D groups have developed it? (to do this you use
-on the web: bibliographic database container containing abstracts and
-citations for academic journal articles).
+1. what research groups or R & D groups have developed it? (to do this you use
+   on the web: bibliographic database container containing abstracts and
+   citations for academic journal articles).
 
-2) State of the art
+2. State of the art
 
-4) What automatic demonstrator uses?
+3. What automatic demonstrator uses?
 
-3) What level of development has ?: Is there software developed?
+4. What level of development has ?: Is there software developed?
 
 You will have noted that the bibliographic citations that use must be updated
 dates
